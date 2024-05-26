@@ -1,0 +1,101 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  background-color: rgb(255, 248, 232);
+  padding: 10px 50px;
+  height: 60px;
+  align-items: center;
+  box-shadow: 1px -14px 12px 10px rgb(180, 180, 180);
+}
+.left-section{
+  color:rgb(252, 213, 129);
+  font-weight: 500;
+  font-size: 30px;
+}
+.left-section span{
+  color:rgb(14, 28, 54);
+  font-weight: 600;
+
+}
+.right-section{
+  display: flex;
+  column-gap: 1px;
+  font-size: 17px;
+  font-weight: 400;
+}
+.right-section div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 19px;
+}
+.right-section div:nth-child(5){
+  margin-left: 10px;
+  background-color: rgb(14, 28, 54);
+  color: rgba(255, 255, 255, 0.892);
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 9px 25px;
+}
+.dear-diary-container{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color:rgb(14, 28, 54);
+  margin-bottom: 23px;
+}
+.dear-diary-container h1{
+  font-size: 45px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  margin-bottom: 17px;
+  padding-right: 5px;
+  border-right: solid 1.3px rgb(14, 28, 54);
+}
+.dear-diary-container h3{
+  font-weight: 350;
+  font-size: 1.4em;
+  margin-bottom: 24px;
+}
+.buttons-container{
+  display: flex;
+  column-gap: 25px;
+}
+.buttons-container div{
+  border: 2px solid rgb(14, 28, 54);
+  padding: 12px 23px;
+  font-size: 0.8em;
+  border-radius: 10px;
+  letter-spacing: .4px;
+}
+.buttons-container div:nth-child(2){
+  background-color:rgb(14, 28, 54) ;
+  color: white;
+  font-weight: 300;
+}
+.messages-found-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.messages-found{
+  color:rgb(14, 28, 54);
+  font-weight: 400;
+  margin-bottom: 17px;
+}
+input{
+  width: 35vw;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 8px;
+  border: solid 1.8px rgb(228, 227, 227);
+  letter-spacing: .4px;
+}
