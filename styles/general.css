@@ -6,8 +6,9 @@ body{
   flex-direction: column;
   align-items: center;
   height: 5000px;
-  margin-top: 60px;
+  padding-top: 60px;
+  position:relative;
 }
- h1,h2,h3{
+ h1,h2,h3,p{
   margin: 0;
  }
