@@ -185,10 +185,6 @@ input:focus {
   display: none;
 }
 
-.visible{
-  display:inherit;
-}
-
 .exit-button{
   position: absolute;
   top: 12px;
@@ -208,9 +204,9 @@ input:focus {
   transform: translate(-50%, -50%); 
   border-radius: 15px;
   padding-right: 100px;
-  display: flex;
   flex-direction: column;
   padding: 20px 30px;
+  display: none;
   padding-right: 40px;
 }
 .write-container{
@@ -264,3 +260,9 @@ input:focus {
   margin-top: 5px;
 }
 */
+.visible{
+  display: flex;
+}
+.invisible{
+  display:none;
+}
