@@ -184,6 +184,19 @@ input:focus {
   align-items: center;
   display: none;
 }
+
+.visible{
+  display:inherit;
+}
+
+.exit-button{
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
 .write-message-container {
   position: fixed;
   top: 42%;
@@ -194,17 +207,60 @@ input:focus {
   z-index: 100;
   transform: translate(-50%, -50%); 
   border-radius: 15px;
-  display: none;
+  padding-right: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  padding-right: 40px;
 }
-.visible{
-  display:inherit;
+.write-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1.8px black;
 }
-
-.exit-button{
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 1.4em;
-  cursor: pointer;
-
+.pencil{
+  width: 30px;
+  height: 30px;
+  background-color: brown;
 }
+.write-container input {
+  width: 100%;
+  background-color: transparent;
+  border:none;
+  font-size: 1.1rem;
+  color:black;
+  padding: 10px 10px;
+  outline:none;
+}
+input::placeholder{
+  color:black;
+}
+input:focus {
+  border: none; 
+  outline: none; 
+}
+.author-container{
+  flex:2;
+  margin-top: 20px;
+  font-size: 17px;
+}
+.author-container input{
+  width: 100%;
+  background-color: transparent;
+  border-radius: 0;
+  border: solid 1.8px black;
+  height: 30px;
+  padding: 0;
+  padding-left: ;
+}
+/*
+.author-container textarea {
+  width: 100%;
+  background-color: transparent;
+  border: solid 1.8px black;
+  resize: none; 
+  height:30px ;
+  margin-top: 5px;
+}
+*/
