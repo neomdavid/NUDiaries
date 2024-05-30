@@ -195,10 +195,10 @@ input:focus {
 
 .write-message-container {
   position: fixed;
-  top: 42%;
+  top: 50%;
   left: 50%;
   width: 570px;
-  height: 400px;
+  height: 570px;
   background-color: rgb(255, 248, 232);
   z-index: 100;
   transform: translate(-50%, -50%); 
@@ -236,19 +236,19 @@ input:focus {
   border: none; 
   outline: none; 
 }
-.author-container{
-  flex:2;
+.author-container, .title-container{
   margin-top: 20px;
   font-size: 17px;
 }
-.author-container input{
-  width: 100%;
+.author-container input,
+.title-container input{
+  width: 98%;
   background-color: transparent;
   border-radius: 0;
   border: solid 1.8px black;
   height: 30px;
   padding: 0;
-  padding-left: ;
+  padding-left: 10px;
 }
 /*
 .author-container textarea {
@@ -260,6 +260,89 @@ input:focus {
   margin-top: 5px;
 }
 */
+
+.messager-container{
+  width: 100%;
+  margin-top: 10px;
+}
+.messager-container textarea{
+  width: 96%;
+  height: 240px;
+  background-color: transparent;
+  border-radius: 0;
+  border: solid 1.8px black;
+  outline: none;
+  padding: 10px 10px;
+}
+.theme-container{
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.theme-container p,
+.topic {
+  margin-right: 15px;
+}
+.themes-choices-container {
+  display: flex;
+  column-gap: 7px;
+}
+.themes-choices-container div:nth-child(1){
+  width: 25px;
+  height: 25px;
+  background-color: lightblue;
+  border-radius: 50%;
+}
+.themes-choices-container div:nth-child(2){
+  width: 25px;
+  height: 25px;
+  background-color: lightblue;
+  border-radius: 50%;
+}
+.themes-choices-container div:nth-child(3){
+  width: 25px;
+  height: 25px;
+  background-color: lightblue;
+  border-radius: 50%;
+}
+.themes-choices-container div:nth-child(4){
+  width: 25px;
+  height: 25px;
+  background-color: lightblue;
+  border-radius: 50%;
+}
+
+.topic-container{
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+}
+.topic-container p {
+  margin-right: 15px;
+}
+.topics-choices-container{
+  display: flex;
+  column-gap: 7px;
+}
+.topics-choices-container img{
+  width: 27px;
+}
+.post-button{
+  position: absolute;
+  bottom:22px;
+  right: 24px;
+  background-color: rgb(16, 30, 56);
+  border: none;
+  color:white;
+  padding: 10px 27px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor:pointer;
+}
+
+
+
+
 .visible{
   display: flex;
 }
