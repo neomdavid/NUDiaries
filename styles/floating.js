@@ -12,5 +12,4 @@ document.querySelector('.exit-button').addEventListener('click',()=>{
   console.log(wrapper.classList);
   wrapper.classList.remove('visible');
   floating.classList.remove('visible');
-  
 });

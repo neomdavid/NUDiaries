@@ -38,155 +38,52 @@
     <input placeholder="Search for an Author">
   </div>
 
-  <div class="posts-list-container">
-    <div class="post-container">
-      <div class="profile-container">
-        <div class="profile-image-container">
-          <div></div>
-        </div>
-        <div class="details-container">
-          <p class="name">ANONYMOUS USER</p>
-          <p class="status">Active 2 days ago</p>
-        </div>
-        <div class="emoji-image-container">
-          <div></div>
-        </div>
-      </div>
-      <div class="message-container">
-        <p>Hello World!</p>
-      </div>
-    </div>
-    <div class="post-container">
-      <div class="profile-container">
-        <div class="profile-image-container">
-          <div></div>
-        </div>
-        <div class="details-container">
-          <p class="name">ANONYMOUS USER</p>
-          <p class="status">Active 2 days ago</p>
-        </div>
-        <div class="emoji-image-container">
-          <div></div>
-        </div>
-      </div>
-      <div class="message-container">
-        <p>Hello World!</p>
-      </div>
-    </div>
-    <div class="post-container">
-      <div class="profile-container">
-        <div class="profile-image-container">
-          <div></div>
-        </div>
-        <div class="details-container">
-          <p class="name">ANONYMOUS USER</p>
-          <p class="status">Active 2 days ago</p>
-        </div>
-        <div class="emoji-image-container">
-          <div></div>
-        </div>
-      </div>
-      <div class="message-container">
-        <p>Hello World!</p>
-      </div>
-    </div>
-    <div class="post-container">
-      <div class="profile-container">
-        <div class="profile-image-container">
-          <div></div>
-        </div>
-        <div class="details-container">
-          <p class="name">ANONYMOUS USER</p>
-          <p class="status">Active 2 days ago</p>
-        </div>
-        <div class="emoji-image-container">
-          <div></div>
-        </div>
-      </div>
-      <div class="message-container">
-        <p>Hello World!</p>
-      </div>
-    </div>
-    <div class="post-container">
-      <div class="profile-container">
-        <div class="profile-image-container">
-          <div></div>
-        </div>
-        <div class="details-container">
-          <p class="name">ANONYMOUS USER</p>
-          <p class="status">Active 2 days ago</p>
-        </div>
-        <div class="emoji-image-container">
-          <div></div>
-        </div>
-      </div>
-      <div class="message-container">
-        <p>Hello World!</p>
-      </div>
-    </div>
-    <div class="post-container">
-      <div class="profile-container">
-        <div class="profile-image-container">
-          <div></div>
-        </div>
-        <div class="details-container">
-          <p class="name">ANONYMOUS USER</p>
-          <p class="status">Active 2 days ago</p>
-        </div>
-        <div class="emoji-image-container">
-          <div></div>
-        </div>
-      </div>
-      <div class="message-container">
-        <p>Hello World!</p>
-      </div>
-    </div>
-  
-    <div class="wrapper">
-    </div>
-
-    <div class="write-message-container">
-      <div class="exit-button">x</div>
-      <div class="write-container">
-        <div class="pencil"></div>
-        <input disabled placeholder="Write your Secret Message">
-      </div>
-      <div class="author-container">
-        <div>Author:</div>
-       <input>
-      </div>
-      <div class="title-container">
-        <div>Title:</div>
-       <input>
-      </div>
-      <div class="messager-container">
-        <div>Message:</div>
-        <textarea></textarea>
-      </div>
-      <div class="theme-container">
-        <p>Theme: </p>
-        <div class="themes-choices-container">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-      <div class="topic-container">
-        <p>Choose a topic: </p>
-        <div class="topics-choices-container">
-          <div><img src="images/technology.png"></div>
-          <div><img src="images/literature.png"></div>
-          <div><img src="images/art.png"></div>
-          <div><img src="images/politics.png"></div>
-        </div>
-      </div>
-      <button class="post-button">Post</button>
-    </div>
-  
+  <div class="posts-list-container js-posts-list-container">
    
   </div>
 
+  <div class="wrapper">
+  </div> 
+  <div class="write-message-container">
+    <div class="exit-button">x</div>
+    <div class="write-container">
+      <div class="pencil"></div>
+      <input disabled placeholder="Write your Secret Message">
+    </div>
+    <div class="author-container">
+      <div>Author:</div>
+     <input>
+    </div>
+    <div class="title-container">
+      <div>Title:</div>
+     <input>
+    </div>
+    <div class="messager-container">
+      <div>Message:</div>
+      <textarea></textarea>
+    </div>
+    <div class="theme-container">
+      <p>Theme: </p>
+      <div class="themes-choices-container">
+        <div class="js-blue"></div>
+        <div class="js-red"></div>
+        <div class="js-green"></div>
+        <div class="js-yellow"></div>
+      </div>
+    </div>
+    <div class="topic-container">
+      <p>Choose a topic: </p>
+      <div class="topics-choices-container">
+        <div><img src="images/technology.png" class="js-technology"></div>
+        <div><img src="images/literature.png" class="js-literature"></div>
+        <div><img src="images/art.png" class="js-art"></div>
+        <div><img src="images/politics.png" class="js-politics"></div>
+      </div>
+    </div>
+    <button class="post-button js-post-button">Post</button>
+  </div>
+
   <script src="styles/floating.js"> </script>
+  <script src="scripts/wall.js" type="module"></script>
 </body>
 </html>

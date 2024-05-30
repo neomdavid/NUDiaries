@@ -1,13 +1,14 @@
-let posts = JSON.parse(localStorage.getItem('posts')) || 
+export let posts = JSON.parse(localStorage.getItem('posts')) || 
 [{
   postId:'1',
   author:'Neo',
-  title:'Try',
-  message:'Hello World!',
-  theme:
+  title:'Ang title nito ay',
+  message:'anofwaefawefawefsawnfoaefkanwefknaskdnflkanweklfnklasdnflkanwklefnklandsklfnaklwdnfklanwdklfnawklndfkawawefkwemfkanwekfnkawfwafewaawfeawakefnkajwnefawknefknawekfnkawenfkawnfwakefmkwafnkwaefnkawnefkaweekewnwaelfawlmefwlmeflawmflemwflaemflawwaefawefawfeawes',//255 characters
+  theme:'rgb(99, 211, 130)',
+  topic:'images/technology.png'
 }];
 
-function saveToStorage(){
+export function saveToStorage(){
   localStorage.setItem('posts', JSON.stringify(posts));
 }
 
