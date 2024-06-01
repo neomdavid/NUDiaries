@@ -41,6 +41,7 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   if (!hasError) {
     addPost(posts.length + 1, author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png');
     clearAddedPostInput();
+    clearErrorStyles();
     wrapper.classList.remove('visible');
     floating.classList.remove('visible');
     renderWall();
@@ -99,8 +100,11 @@ function validatePost(author, title, message) {
     displayTitleError();
     hasError = true;
   }
-  if (!message || message.length >= 300) {
-    displayMessageError(message);
+  if (!message){
+    displayMessageEmpty();
+    hasError = true;
+  } else if (message.length > 300){
+    displayMessageMax();
     hasError = true;
   }
 
@@ -123,6 +127,52 @@ function displayTitleError() {
   document.querySelector('.title-container div').style.color = "red";
 }
 
-function displayMessageError(message) {
-  
+function displayMessageMax() {
+  document.querySelector('.message-error-max').style.display = "flex";
+  document.querySelector('.messager-container textarea').style.borderColor = "red";
+  document.querySelector('.messager-container div').style.color = "red";
+  document.querySelector('.message-error-none').style.display = "none";
 }
+
+function displayMessageEmpty() {
+  document.querySelector('.message-error-none').style.display = "flex";
+  document.querySelector('.messager-container textarea').style.borderColor = "red";
+  document.querySelector('.messager-container div').style.color = "red";
+  document.querySelector('.message-error-max').style.display = "none";
+}
+
+function clearErrorStyles() {
+  document.querySelector('.author-error').style.display = "none";
+  document.querySelector('.title-error').style.display = "none";
+  document.querySelector('.message-error-none').style.display = "none";
+  document.querySelector('.message-error-max').style.display = "none";
+
+  document.querySelector('.author-container input').classList.remove('error');
+  document.querySelector('.title-container input').classList.remove('error');
+  document.querySelector('.messager-container textarea').classList.remove('error');
+
+  document.querySelector('.author-container div').style.color = "";
+  document.querySelector('.title-container div').style.color = "";
+  document.querySelector('.messager-container div').style.color = "";
+  document.querySelector('.messager-container textarea').style.borderColor = "";
+}
+
+// Adding event listeners to clear error styles when user starts typing
+document.querySelector('.author-container input').addEventListener('input', () => {
+  document.querySelector('.author-error').style.display = "none";
+  document.querySelector('.author-container input').classList.remove('error');
+  document.querySelector('.author-container div').style.color = "";
+});
+
+document.querySelector('.title-container input').addEventListener('input', () => {
+  document.querySelector('.title-error').style.display = "none";
+  document.querySelector('.title-container input').classList.remove('error');
+  document.querySelector('.title-container div').style.color = "";
+});
+
+document.querySelector('.messager-container textarea').addEventListener('input', () => {
+  document.querySelector('.message-error-none').style.display = "none";
+  document.querySelector('.message-error-max').style.display = "none";
+  document.querySelector('.messager-container textarea').style.borderColor = "";
+  document.querySelector('.messager-container div').style.color = "";
+});
