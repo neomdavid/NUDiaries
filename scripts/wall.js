@@ -36,11 +36,15 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   const title = document.querySelector('.title-container input').value;
   const message = document.querySelector('.messager-container textarea').value;
   
-  addPost(posts.length + 1, author, title, message, theme, topic);
-  clearAddedPostInput();
-  wrapper.classList.remove('visible');
-  floating.classList.remove('visible');
-  renderWall();
+  const hasError = validatePost(author, title, message);
+  
+  if (!hasError) {
+    addPost(posts.length + 1, author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png');
+    clearAddedPostInput();
+    wrapper.classList.remove('visible');
+    floating.classList.remove('visible');
+    renderWall();
+  }
 });
 
 // THEME
@@ -76,10 +80,49 @@ const floating = document.querySelector('.write-message-container');
 
 renderWall();
 
-function clearAddedPostInput(){
+function clearAddedPostInput() {
   document.querySelector('.author-container input').value = '';
   document.querySelector('.title-container input').value = '';
   document.querySelector('.messager-container textarea').value = '';
   theme = undefined;
   topic = undefined;
 };
+
+function validatePost(author, title, message) {
+  let hasError = false;
+
+  if (!author) {
+    displayAuthorError();
+    hasError = true;
+  }
+  if (!title) {
+    displayTitleError();
+    hasError = true;
+  }
+  if (!message || message.length >= 300) {
+    displayMessageError(message);
+    hasError = true;
+  }
+
+  return hasError;
+}
+
+function displayAuthorError() {
+  document.querySelector('.write-message-container').classList.add('visible');
+  document.querySelector('.wrapper').classList.add('visible');
+  document.querySelector('.author-error').style.display = "flex";
+  document.querySelector('.author-container input').classList.add('error');
+  document.querySelector('.author-container div').style.color = "red";
+}
+
+function displayTitleError() {
+  document.querySelector('.write-message-container').classList.add('visible');
+  document.querySelector('.wrapper').classList.add('visible');
+  document.querySelector('.title-error').style.display = "flex";
+  document.querySelector('.title-container input').classList.add('error');
+  document.querySelector('.title-container div').style.color = "red";
+}
+
+function displayMessageError(message) {
+  
+}

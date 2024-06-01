@@ -165,7 +165,6 @@ input:focus {
   flex:1;
   white-space: normal;
   background-color: white;
-  margin-top: 20px;
   border: solid 1.5px rgb(237, 234, 234);
   padding: 15px 15px;
 }
@@ -207,7 +206,6 @@ input:focus {
   top: 50%;
   left: 50%;
   width: 570px;
-  height: 570px;
   background-color: rgb(255, 248, 232);
   z-index: 100;
   transform: translate(-50%, -50%); 
@@ -245,8 +243,11 @@ input:focus {
   border: none; 
   outline: none; 
 }
-.author-container, .title-container{
+.author-container{
   margin-top: 20px;
+}
+.author-container, .title-container{
+  margin-bottom: 20px;
   font-size: 17px;
 }
 .author-container input,
@@ -258,6 +259,7 @@ input:focus {
   height: 30px;
   padding: 0;
   padding-left: 10px;
+  margin-top: 3px;
 }
 /*
 .author-container textarea {
@@ -276,7 +278,7 @@ input:focus {
 }
 .messager-container textarea{
   width: 96%;
-  height: 240px;
+  height: 230px;
   background-color: transparent;
   border-radius: 0;
   border: solid 1.8px black;
@@ -349,6 +351,36 @@ input:focus {
   cursor:pointer;
 }
 
+
+
+
+.author-error{
+  color:red;
+  font-size: 12px;
+  margin: 5px;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  display: none;
+}
+.title-error{
+  color:red;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: -16px;
+  margin-left: 6px;
+  display: none;
+}
+.message-error-max,
+.message-error-none{
+  color:red;
+  font-size: 12px;
+  margin-left: 8px;
+  margin-top: 3px;
+  display: none;
+}
+.error {
+  border-color: red !important;
+}
 
 
 

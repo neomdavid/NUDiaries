@@ -54,13 +54,17 @@
       <div>Author:</div>
      <input>
     </div>
+    <div class="author-error">Please enter an author.</div>
     <div class="title-container">
       <div>Title:</div>
      <input>
+     <div class="title-error">Please enter a title.</div>
     </div>
     <div class="messager-container">
       <div>Message:</div>
       <textarea></textarea>
+      <div class="message-error-max">Reached 300 max characters.</div>
+      <div class="message-error-none">Input a character.</div>
     </div>
     <div class="theme-container">
       <p>Theme: </p>
@@ -85,5 +89,6 @@
 
   <script src="styles/floating.js"> </script>
   <script src="scripts/wall.js" type="module"></script>
+  <script src="scripts/data/posts.js" type="module"></script>
 </body>
 </html>
