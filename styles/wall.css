@@ -118,8 +118,8 @@ input:focus {
   display: flex;
   flex-direction: column;
   background-color: rgb(249, 246, 246);
-  width: 350px;
-  height: 280px;
+  width: 300px;
+  height: 320px;
   padding: 20px 15px;
   border-radius: 12px;
   box-shadow: 0px 7px 10px 1px rgba(174, 173, 173, 0.25);
