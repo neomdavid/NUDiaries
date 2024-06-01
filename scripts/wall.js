@@ -37,7 +37,7 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   const message = document.querySelector('.messager-container textarea').value;
   
   addPost(posts.length + 1, author, title, message, theme, topic);
-
+  clearAddedPostInput();
   wrapper.classList.remove('visible');
   floating.classList.remove('visible');
   renderWall();
@@ -75,3 +75,11 @@ const wrapper = document.querySelector('.wrapper');
 const floating = document.querySelector('.write-message-container');
 
 renderWall();
+
+function clearAddedPostInput(){
+  document.querySelector('.author-container input').value = '';
+  document.querySelector('.title-container input').value = '';
+  document.querySelector('.messager-container textarea').value = '';
+  theme = undefined;
+  topic = undefined;
+};
