@@ -1,8 +1,10 @@
 import { posts, addPost } from "./data/posts.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 function renderWall() {
   let postsHTML = ``;
   posts.forEach((post) => {
+   
     postsHTML += `
       <div class="post-container">
         <div class="profile-container">
@@ -12,7 +14,7 @@ function renderWall() {
           <div class="details-container">
             <p class="title">${post.title}</p>
             <p class="name">${post.author}</p>
-            <p class="status">Active 2 days ago</p>
+            <p class="status">${displayTime(dayjs(post.time))}</p>
           </div>
           <div class="topic-image-container">
             <img src="${post.topic}">
@@ -35,11 +37,12 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   const author = document.querySelector('.author-container input').value;
   const title = document.querySelector('.title-container input').value;
   const message = document.querySelector('.messager-container textarea').value;
+  let time = dayjs();
   
   const hasError = validatePost(author, title, message);
   
   if (!hasError) {
-    addPost(posts.length + 1, author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png');
+    addPost(posts.length + 1, author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time);
     clearAddedPostInput();
     clearErrorStyles();
     wrapper.classList.remove('visible');
@@ -176,3 +179,26 @@ document.querySelector('.messager-container textarea').addEventListener('input',
   document.querySelector('.messager-container textarea').style.borderColor = "";
   document.querySelector('.messager-container div').style.color = "";
 });
+
+
+function displayTime(postTime){
+  let now = dayjs();
+
+  let displayedTime;
+
+  let secondsAgo = now.diff(postTime, 'second');
+  let minutesAgo = now.diff(postTime, 'minute');
+  let hoursAgo = now.diff(postTime, 'hour');
+  let daysAgo = now.diff(postTime, 'day');
+
+  if (secondsAgo < 60) {
+    displayedTime = secondsAgo > 1 ? `${secondsAgo} seconds ago` : `${secondsAgo} second ago`;
+  } else if (minutesAgo < 60) {
+    displayedTime = minutesAgo > 1 ? `${minutesAgo} minutes ago` : `${minutesAgo} minute ago`;
+  } else if (hoursAgo < 24) {
+    displayedTime = hoursAgo > 1 ? `${hoursAgo} hours ago` : `${hoursAgo} hour ago`;
+  } else {
+    displayedTime = daysAgo > 1 ? `${daysAgo} days ago` : `${daysAgo} day ago`;
+  }
+  return displayedTime;
+}
