@@ -136,14 +136,18 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
-.profile-image-container div
-,.topic-image-container img {
-  width: 35px;
+
+.topic-image-container img {
+  width: 100%;
 }
-.profile-image-container div{
-  background-color: red;
-  height: 35px;
+
+.profile-image-container img{
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+
 }
 .details-container{
   flex:6;
@@ -223,11 +227,17 @@ input:focus {
   align-items: center;
   border-bottom: solid 1.8px black;
 }
-.pencil{
-  width: 30px;
-  height: 30px;
-  background-color: brown;
+.write-container img{
+  object-fit: cover;
+  object-position: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid 1px black;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
+
 .write-container input {
   width: 100%;
   background-color: transparent;

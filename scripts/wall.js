@@ -4,17 +4,36 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 function renderWall() {
   let postsHTML = ``;
   posts.forEach((post) => {
-   
+    let postTime = dayjs(post.time);
+    let now = dayjs();
+
+    let displayedTime;
+
+    let secondsAgo = now.diff(postTime, 'second');
+    let minutesAgo = now.diff(postTime, 'minute');
+    let hoursAgo = now.diff(postTime, 'hour');
+    let daysAgo = now.diff(postTime, 'day');
+
+    if (secondsAgo < 60) {
+      displayedTime = secondsAgo > 1 ? `${secondsAgo} seconds ago` : `${secondsAgo} second ago`;
+    } else if (minutesAgo < 60) {
+      displayedTime = minutesAgo > 1 ? `${minutesAgo} minutes ago` : `${minutesAgo} minute ago`;
+    } else if (hoursAgo < 24) {
+      displayedTime = hoursAgo > 1 ? `${hoursAgo} hours ago` : `${hoursAgo} hour ago`;
+    } else {
+      displayedTime = daysAgo > 1 ? `${daysAgo} days ago` : `${daysAgo} day ago`;
+    }
+
     postsHTML += `
       <div class="post-container">
         <div class="profile-container">
           <div class="profile-image-container">
-            <div></div>
+            <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
           </div>
           <div class="details-container">
             <p class="title">${post.title}</p>
             <p class="name">${post.author}</p>
-            <p class="status">${displayTime(dayjs(post.time))}</p>
+            <p class="status">${displayedTime}</p>
           </div>
           <div class="topic-image-container">
             <img src="${post.topic}">
@@ -32,6 +51,7 @@ function renderWall() {
 
 let theme;
 let topic;
+let profilePicture;
 
 document.querySelector('.js-post-button').addEventListener('click', () => {
   const author = document.querySelector('.author-container input').value;
@@ -42,7 +62,7 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   const hasError = validatePost(author, title, message);
   
   if (!hasError) {
-    addPost(posts.length + 1, author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time);
+    addPost(posts.length + 1, author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
     clearAddedPostInput();
     clearErrorStyles();
     wrapper.classList.remove('visible');
@@ -50,6 +70,29 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
     renderWall();
   }
 });
+
+
+document.querySelector('#profile-picture-input').addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    profilePicture = e.target.result;
+    document.querySelector('#profile-picture-button').src = profilePicture;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+});
+
+// Trigger file input when the image is clicked
+document.querySelector('#profile-picture-button').addEventListener('click', () => {
+  document.querySelector('#profile-picture-input').click();
+});
+
+// Other existing JavaScript functionality as needed
+
 
 // THEME
 document.querySelector('.js-blue').addEventListener('click', () => {
@@ -90,6 +133,7 @@ function clearAddedPostInput() {
   document.querySelector('.messager-container textarea').value = '';
   theme = undefined;
   topic = undefined;
+  profilePicture = undefined;
 };
 
 function validatePost(author, title, message) {
@@ -179,26 +223,3 @@ document.querySelector('.messager-container textarea').addEventListener('input',
   document.querySelector('.messager-container textarea').style.borderColor = "";
   document.querySelector('.messager-container div').style.color = "";
 });
-
-
-function displayTime(postTime){
-  let now = dayjs();
-
-  let displayedTime;
-
-  let secondsAgo = now.diff(postTime, 'second');
-  let minutesAgo = now.diff(postTime, 'minute');
-  let hoursAgo = now.diff(postTime, 'hour');
-  let daysAgo = now.diff(postTime, 'day');
-
-  if (secondsAgo < 60) {
-    displayedTime = secondsAgo > 1 ? `${secondsAgo} seconds ago` : `${secondsAgo} second ago`;
-  } else if (minutesAgo < 60) {
-    displayedTime = minutesAgo > 1 ? `${minutesAgo} minutes ago` : `${minutesAgo} minute ago`;
-  } else if (hoursAgo < 24) {
-    displayedTime = hoursAgo > 1 ? `${hoursAgo} hours ago` : `${hoursAgo} hour ago`;
-  } else {
-    displayedTime = daysAgo > 1 ? `${daysAgo} days ago` : `${daysAgo} day ago`;
-  }
-  return displayedTime;
-}

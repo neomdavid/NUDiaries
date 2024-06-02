@@ -47,7 +47,11 @@
   <div class="write-message-container">
     <div class="exit-button">x</div>
     <div class="write-container">
-      <div class="pencil"></div>
+      <!-- Hidden file input -->
+      <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
+
+      <!-- Image that acts as a button -->
+      <img src="images/bulldog.jpeg" id="profile-picture-button" class="pencil" alt="Upload Profile Picture">
       <input disabled placeholder="Write your Secret Message">
     </div>
     <div class="author-container">
