@@ -134,11 +134,17 @@ input:focus {
   display: flex;
   flex:1;
   justify-content: center;
-  align-items: center;
+  align-items: top;
 }
 
-.topic-image-container img {
+.topic-image-container div {
   width: 100%;
+  padding-top: 5px;
+}
+.topic-image-container img{
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
 }
 
 .profile-image-container img{
@@ -151,17 +157,21 @@ input:focus {
 }
 .details-container{
   flex:6;
-  padding-left: 5px;
+  padding-left: 12px;
   color: rgb(14, 28, 54);
 }
 .details-container .title{
   margin-bottom: 5px;
+  font-weight: 500;
+}
+.details-container .name{
+  font-size: 13.5px;
 }
 .status{
   color: rgb(130, 130, 130);
-  font-size: .8em;
+  font-size: 12px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .message-container{
   display: flex;
@@ -309,6 +319,10 @@ input:focus {
   display: flex;
   column-gap: 7px;
 }
+.themes-choices-container div{
+  cursor: pointer;
+  border: solid 1.5px transparent;
+}
 .themes-choices-container div:nth-child(1){
   width: 25px;
   height: 25px;
@@ -346,9 +360,13 @@ input:focus {
   display: flex;
   column-gap: 7px;
 }
-.topics-choices-container img{
+.topics-choices-container img {
+  cursor: pointer;
+  filter: grayscale(100%); /* Apply grayscale filter */
+  transition: filter 0.3s ease; /* Smooth transition */
   width: 27px;
 }
+
 .post-button{
   position: absolute;
   bottom:22px;

@@ -36,7 +36,9 @@ function renderWall() {
             <p class="status">${displayedTime}</p>
           </div>
           <div class="topic-image-container">
-            <img src="${post.topic}">
+            <div>
+             <img src="${post.topic}">
+            </div>
           </div>
         </div>
         <div class="message-container">
