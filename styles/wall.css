@@ -21,6 +21,31 @@ header{
   font-weight: 600;
 
 }
+.scroll-up-btn {
+  position: fixed;
+  height: 45px;
+  width: 42px;
+  background: rgb(141, 11, 11);
+  right: 30px;
+  bottom: 10px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 60px;
+  color: #ffffff;
+  z-index: 9999;
+  font-size: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.scroll-up-btn.show{
+  bottom: 30px;
+  opacity: 1;
+  pointer-events: auto;
+}
 .right-section{
   display: flex;
   column-gap: 1px;
@@ -43,6 +68,10 @@ header{
   font-weight: 300;
   padding: 9px 25px;
 }
+.navbar.sticky{
+  padding:30px 0;
+  background: black;
+}
 .dear-diary-container{
   margin-top: 50px;
   display: flex;
@@ -58,9 +87,8 @@ header{
   letter-spacing: .5px;
   margin-bottom: 17px;
   padding-right: 5px;
-  border-right: solid 1.3px rgb(14, 28, 54);
 }
-.dear-diary-container h3{
+.dear-diary-container h3{ 
   font-weight: 350;
   font-size: 1.4em;
   margin-bottom: 24px;
@@ -104,6 +132,7 @@ input{
 input:focus {
   border: solid 2px rgb(14, 28, 54);
 }
+
 .posts-list-container{
   display: flex;
   flex-wrap: wrap;
@@ -360,13 +389,9 @@ input:focus {
   display: flex;
   column-gap: 7px;
 }
-.topics-choices-container img {
-  cursor: pointer;
-  filter: grayscale(100%); /* Apply grayscale filter */
-  transition: filter 0.3s ease; /* Smooth transition */
+.topics-choices-container img{
   width: 27px;
 }
-
 .post-button{
   position: absolute;
   bottom:22px;

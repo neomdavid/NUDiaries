@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!--try-->
   <link href="styles/general.css" rel="stylesheet">
   <link href="styles/wall.css" rel="stylesheet">
   
@@ -13,8 +14,9 @@
   <title>Document</title>
 </head>
 <body>
+
   <header>
-    <div class="left-section"><span>NU</span>Diaries</div>
+    <div class="left-section"><span>NU</span>How</div>
     <nav class="right-section">
       <div>Inbox</div>
       <div>Featured</div>
@@ -25,7 +27,7 @@
   </header>
 
   <div class="dear-diary-container">
-    <h1>Dear Diary...</h1>
+    <h1 class="text-1"><span class="typing"></span></h1>
     <h3>A Freedom Wall for NU Students, by NU Students.</h3>
     <div class="buttons-container">
       <div class="learn-more">Learn More</div>
@@ -39,7 +41,6 @@
   </div>
 
   <div class="posts-list-container js-posts-list-container">
-   
   </div>
 
   <div class="wrapper">
@@ -85,14 +86,19 @@
         <div><img src="images/technology.png" class="js-technology"></div>
         <div><img src="images/literature.png" class="js-literature"></div>
         <div><img src="images/art.png" class="js-art"></div>
-        <div><img src="images/politics.png" class="js-politics"></div>
+        <div><img src="images/politics.png" class="js-politics"></div> 
       </div>
     </div>
     <button class="post-button js-post-button">Post</button>
   </div>
-
-  <script src="styles/floating.js"> </script>
+  <div class="scroll-up-btn">
+    <h3 class="fas fa-angle-up">^</h3>
+  </div>
+  <script src="styles/frontend/buttonup.js"></script>
+  <script src="styles/frontend/floating.js"> </script>
   <script src="scripts/wall.js" type="module"></script>
   <script src="scripts/data/posts.js" type="module"></script>
+  <script src="styles/frontend/textchange.js" type="module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
