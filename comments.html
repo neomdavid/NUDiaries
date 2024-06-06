@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--last try-->
+  <link href="styles/general.css" rel="stylesheet">
+  <link href="styles/comments.css" rel="stylesheet">
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comments</title>
+</head>
+<body>
+  <header>
+    <div class="left-section"><span>NU</span>How</div>
+    <nav class="right-section">
+      <div>Inbox</div>
+      <div>Featured</div>
+      <div>About</div>
+      <div>Contact</div>
+      <div class="js-write-button">Write a Post</div>
+    </nav>
+  </header>
+  
+  <div class="comment-container">
+    <div class="post-details-container">
+      <div class="profile-container">
+       <img src="images/bulldog.jpeg">
+      </div>
+      <div class="details-container">
+        <div class="name">ANONYMOUS USER</div>
+        <div class="status">Active 3 mins ago</div>
+      </div>
+      <div class="topic-container">
+        <img src="images/art.png">
+      </div>
+    </div>
+    <div class="message-comments-container">
+      <div class="message">This is a try message for me to test this website.This is a try message for me to test this website.This is a try message for me to test this website.This is a try message for me to test this website.</div>
+      <div class="comments-container">
+        <div class="single-comment-container">    
+          <div class="user-name">User 1</div>
+          <div class="user-comment">Hello!</div>
+        </div>
+        <div class="single-comment-container">    
+          <div class="user-name">User 1</div>
+          <div class="user-comment">Hello!</div>
+          <div class="user-comment">Hello!HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello!HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello!HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-input-container">
+      <div class="name-comment-container">
+        <div class="username-label">Username:</div>
+        <input class="username-input" placeholder="Aa">
+      </div>
+      <div class="theme-container">
+        <div class="theme-label">Theme:</div>
+        <div class="themes-choices-container">
+          <div class="js-blue"></div>
+          <div class="js-red"></div>
+          <div class="js-green"></div>
+          <div class="js-yellow"></div>
+        </div>
+      </div>
+      <div class="message-input-container" oninput="autoResize()">
+  
+        <div class="message-input" oninput="autoResize()">
+          <textarea class="textarea-clone"></textarea></div>
+        <div class="send-button-container">
+          <img src="images/right.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="styles/frontend/comment.js"></script>
+</body>
+
+</html>
