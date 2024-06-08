@@ -64,14 +64,19 @@
 }
 .message, .user-comment{
   font-size: .9em;
-  background-color: rgb(99, 177, 211);
   border-radius: 16px;
   padding: 8px 10px;
   max-width: 55%;
+}
+.user-comment{
+  background-color: rgb(99, 177, 211);
   margin-bottom: 2px;
 }
 .message{
   margin-bottom: 12px;
+  display: inline-block;
+  background-color: rgb(99, 177, 211);
+  overflow-wrap: break-word;
 }
 .comments-container{
   display: flex;

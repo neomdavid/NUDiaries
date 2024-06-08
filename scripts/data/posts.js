@@ -26,3 +26,13 @@ export function addPost(postId, author, title, message, theme, topic, time, prof
   });
   saveToStorage();
 }
+
+export function getPostById(id){
+  let matchingPost;
+  posts.forEach((post) => {
+    if (post.postId === id) {
+      matchingPost = post;
+    }
+  });
+  return matchingPost;
+}
