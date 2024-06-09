@@ -1,5 +1,6 @@
 import {getPostById} from "./data/posts.js";
 import { formatTime } from "./utils/formatTime.js";
+import { comments } from "./data/comments.js";
 
 const url = new URL(window.location.href);
 const postId = url.searchParams.get('postId');
@@ -24,15 +25,10 @@ let commentsHTML = `
    <div class="message">${matchingPost.message}</div>
   </div>
   <div class="comments-container">
-    <div class="single-comment-container">    
-      <div class="user-name">User 1</div>
-      <div class="user-comment">Hello!</div>
-    </div>
-    <div class="single-comment-container">    
-      <div class="user-name">User 1</div>
-      <div class="user-comment">Hello!</div>
-      <div class="user-comment">Hello!HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello!HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello!HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</div>
-    </div>
+
+    //HEREEEEEEEEEEEEEEEE
+    ${commentsListHTML()}
+  
   </div>
 </div>
 <div class="info-input-container">
@@ -60,7 +56,39 @@ let commentsHTML = `
 </div>
 `
 
-
-
-
 document.querySelector('.js-comment-container').innerHTML = commentsHTML;
+
+//This will iterate through the comments array of the post and iterates and checks through the whole comments data from data/comments.js
+function commentsListHTML(){
+  let commentListHTML = ``;
+  comments.forEach((comment, index) => {
+    console.log(matchingPost);
+    console.log('commentId '+comment.commentId);
+
+    if (matchingPost.comments.includes(comment.commentId)){
+      console.log(comment);
+      if (index > 0 && comment.userId === comments[index - 1].userId) {
+        commentListHTML += ` 
+           <div class="user-comment">${comment.comment}</div>
+        `;
+      } else {
+        if (index > 0) {
+          commentListHTML += `</div>`;
+        }
+        commentListHTML += ` 
+          <div class="single-comment-container">    
+            <div class="user-name">User ${comment.userId}</div>
+            <div class="user-comment">${comment.comment}</div>
+        `;
+      }
+    }
+  });
+
+  // Close the last comment container
+  if (comments.length > 0) {
+    commentListHTML += `</div>`;
+  }
+
+  return commentListHTML;
+}
+
