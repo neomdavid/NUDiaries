@@ -38,3 +38,11 @@ export function getPostById(id){
   });
   return matchingPost;
 }
+export function addCommentToPost(postId, commentId){
+  posts.forEach((post)=>{
+    if(post.postId === postId){
+      post.comments.push(commentId);
+    }
+  })
+  saveToStorage();
+};

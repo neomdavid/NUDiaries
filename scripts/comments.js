@@ -1,11 +1,14 @@
-import {getPostById} from "./data/posts.js";
+import {getPostById, addCommentToPost} from "./data/posts.js";
 import { formatTime } from "./utils/formatTime.js";
-import { comments } from "./data/comments.js";
-
+import { comments, newComment } from "./data/comments.js";
+import { addEventListenerForThemes } from "./utils/addEventListenerThemes.js";
 const url = new URL(window.location.href);
 const postId = url.searchParams.get('postId');
 
 const matchingPost = getPostById(postId);
+
+renderCommentPage();
+function renderCommentPage(){
 
 let commentsHTML = `
 <div class="post-details-container">
@@ -22,7 +25,7 @@ let commentsHTML = `
 </div>
 <div class="message-comments-container">
   <div class="message-outer-container">
-   <div class="message">${matchingPost.message}</div>
+   <div class="message" style="background-color:${matchingPost.theme}">${matchingPost.message}</div>
   </div>
   <div class="comments-container">
 
@@ -34,7 +37,7 @@ let commentsHTML = `
 <div class="info-input-container">
   <div class="name-comment-container">
     <div class="username-label">Username:</div>
-    <input class="username-input" placeholder="Aa">
+    <input class="username-input js-username-input" placeholder="Aa">
   </div>
   <div class="theme-container">
     <div class="theme-label">Theme:</div>
@@ -48,28 +51,44 @@ let commentsHTML = `
   <div class="message-input-container" oninput="autoResize()">
 
     <div class="message-input" oninput="autoResize()">
-          <textarea class="textarea-clone"></textarea></div>
+          <textarea class="textarea-clone js-comment-input"></textarea></div>
     <div class="send-button-container">
-      <img src="images/right.png">
+      <img class="js-send-button" src="images/right.png">
     </div>
   </div>
 </div>
 `
 
+console.log(comments);
+let theme;
+
 document.querySelector('.js-comment-container').innerHTML = commentsHTML;
+
+document.querySelector('.js-send-button').addEventListener('click',()=>{
+  const comment = document.querySelector('.js-comment-input').value;
+  const commentId = comments.length+1;
+  newComment(commentId,1,comment,theme)
+  addCommentToPost(matchingPost.postId, commentId);
+  renderCommentPage();
+});
+
+
+addEventListenerForThemes(selectedTheme => {
+  theme = selectedTheme;
+});
+
 
 //This will iterate through the comments array of the post and iterates and checks through the whole comments data from data/comments.js
 function commentsListHTML(){
   let commentListHTML = ``;
   comments.forEach((comment, index) => {
-    console.log(matchingPost);
-    console.log('commentId '+comment.commentId);
+ 
 
     if (matchingPost.comments.includes(comment.commentId)){
-      console.log(comment);
+   
       if (index > 0 && comment.userId === comments[index - 1].userId) {
         commentListHTML += ` 
-           <div class="user-comment">${comment.comment}</div>
+           <div class="user-comment" style="background-color:${comment.theme}">${comment.comment}</div>
         `;
       } else {
         if (index > 0) {
@@ -92,3 +111,18 @@ function commentsListHTML(){
   return commentListHTML;
 }
 
+
+
+
+//Themes styles: clicked outline
+document.querySelectorAll('.themes-choices-container div').forEach((theme) => {
+  theme.addEventListener('click', (event) => {
+    // Remove the black border from all themes
+    document.querySelectorAll('.themes-choices-container div').forEach((t) => {
+      t.style.border = 'none';
+    });
+    // Add the black border to the selected theme
+    event.currentTarget.style.border = '1.5px solid black';
+  });
+});
+}
