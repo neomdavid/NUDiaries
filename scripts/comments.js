@@ -35,10 +35,6 @@ let commentsHTML = `
   </div>
 </div>
 <div class="info-input-container">
-  <div class="name-comment-container">
-    <div class="username-label">Username:</div>
-    <input class="username-input js-username-input" placeholder="Aa">
-  </div>
   <div class="theme-container">
     <div class="theme-label">Theme:</div>
     <div class="themes-choices-container">

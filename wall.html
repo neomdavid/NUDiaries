@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--last try-->
   <link href="styles/general.css" rel="stylesheet">
   <link href="styles/wall.css" rel="stylesheet">
-  
+  <link href="styles/post-list.css" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
     </div>
   </div>
   
-  <div class="messages-found-container">
+  <div class="messages-found-container js-messages-found">
     <div class="messages-found">1234 Messages Found</div>
     <input placeholder="Search for an Author">
   </div>
@@ -91,14 +91,22 @@
     </div>
     <button class="post-button js-post-button">Post</button>
   </div>
+
+  <!--Scroll Up BTN Feature-->
   <div class="scroll-up-btn">
-    <h3 class="fas fa-angle-up">^</h3>
+    <i class="fa-solid fa-angle-up"></i>
   </div>
-  <script src="styles/frontend/buttonup.js"></script>
-  <script src="styles/frontend/floating.js" type="module"> </script>
+  <!--ENDS HERE Scroll Up BTN-->
+
+  <!--Typed.umd and Jquery are CDNJS jscript / External Javascript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="scripts/wall.js" type="module"></script>
   <script src="scripts/data/posts.js" type="module"></script>
   <script src="styles/frontend/textchange.js" type="module"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="styles/frontend/buttonup.js"></script>
+  <script src="styles/frontend/floating.js"></script>
+
+  
 </body>
 </html>

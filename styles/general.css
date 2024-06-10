@@ -65,3 +65,16 @@ body{
 a{
   text-decoration: none;
 }
+input{
+  width: 35vw;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 10px;
+  border: solid 1.8px rgb(228, 227, 227);
+  letter-spacing: .4px;
+  outline: none; 
+}
+input:focus {
+  border: solid 2px rgb(14, 28, 54);
+}
+

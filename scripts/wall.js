@@ -6,6 +6,8 @@ import { addEventListenerForThemes } from "./utils/addEventListenerThemes.js";
 
 function renderWall() {
   let postsHTML = ``;
+  document.querySelector('.js-messages-found').innerHTML = `${posts.length} Messages Found`;
+
   posts.forEach((post) => {
     
     postsHTML += `
