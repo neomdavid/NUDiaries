@@ -1,4 +1,5 @@
-import { posts, addPost } from "./data/posts.js";
+import { posts } from "./data/posts.js";
+import { submitPost } from "./data/submissions.js";
 import { formatTime } from "./utils/formatTime.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { addEventListenerForThemes } from "./utils/addEventListenerThemes.js";
@@ -60,7 +61,7 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   const hasError = validatePost(author, title, message);
   
   if (!hasError) {
-    addPost(String(posts.length + 1), author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
+    submitPost(String(posts.length + 1), author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
     clearAddedPostInput();
     clearErrorStyles();
     wrapper.classList.remove('visible');
