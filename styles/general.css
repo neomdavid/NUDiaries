@@ -1,63 +1,24 @@
+/*IMPORT INTER FONT*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 body{
   margin: 0;
-  font-family: "Roboto";
-  background-color: rgb(255, 248, 232);
+  font-family: "Inter";
+  background-image: linear-gradient(to bottom right, #FFF8E8,#f5dccb);
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 5000px;
-  padding-top: 100px;
-  position:relative;
+  width: 100%;
+  position:relative;  
+  color: #0E1C36;
+  overflow-x: hidden;
+  left: 0;
+  right: 0;
 }
  h1,h2,h3,p{
   margin: 0;
  }
  
- header{
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  background-color: rgb(255, 248, 232);
-  padding: 10px 50px;
-  height: 60px;
-  align-items: center;
-  box-shadow: 1px -14px 12px 10px rgb(180, 180, 180);
-}
-
-.left-section{
-  color:rgb(252, 213, 129);
-  font-weight: 500;
-  font-size: 30px;
-}
-.left-section span{
-  color:rgb(14, 28, 54);
-  font-weight: 600;
-}
-.right-section{
-  display: flex;
-  column-gap: 1px;
-  font-size: 17px;
-  font-weight: 400;
-}
-.right-section div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 9px 19px;
-  cursor: pointer;
-}
-.right-section div:nth-child(5){
-  margin-left: 10px;
-  background-color: rgb(14, 28, 54);
-  color: rgba(255, 255, 255, 0.892);
-  border-radius: 7px;
-  font-size: 15px;
-  font-weight: 300;
-  padding: 9px 25px;
-}
 .username-input:focus,
 .textarea-clone:focus {
   outline: none;
@@ -77,4 +38,300 @@ input{
 input:focus {
   border: solid 2px rgb(14, 28, 54);
 }
+
+body{
+  padding-top: 20px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(to right, #ffecc79d, #fed3b5af, #c9c0ffb8);
+  padding: 10px 50px;
+  height: 50px;
+  align-items: center;
+  box-shadow: 0px -10px 20px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 100000;
+}
+
+.header div {
+  font-weight: 800;
+  font-size: 30px;
+  user-select: none;
+}
+
+.color1 {
+  color: #0E1C36;
+}
+
+.color2 {
+  color: #EECC82;
+}
+
+.color3 {
+  color: #FFF8E8;
+}
+
+.nav {
+  display: flex;
+  column-gap: 1px;
+  font-size: 17px;
+  font-weight: 400;
+  align-items: center;
+}
+
+.nav div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.nav a {
+  padding: 5px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.home:hover,
+.featured:hover,
+.about:hover,
+.contact:hover {
+  border-radius: 5px;
+  transform: scale(1.1, 1.1);
+}
+
+.nav .nav_button a {
+  padding: 0;
+}
+
+.nav_writeButton {
+  background-color: rgb(16, 30, 56);
+  color: #FFF8E8;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.nav_writeButton:hover {
+  background-color: rgb(44, 59, 89);
+  transform: scale(1.1, 1.1);
+}
+.banner{
+  width: 100vw;
+  text-align: center;
+}
+
+.banner img {
+  opacity: 0.5;
+  box-shadow: 0px -10px 20px 10px rgba(221, 51, 51, 0.2);
+  filter: blur(0.75px);
+  z-index: -1;
+  user-select: none;
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.banner_text {
+  padding-top: 100px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(14, 28, 54);
+  margin-bottom: 23px;
+  height: 350px;
+  margin-bottom: 150px;
+}
+
+.banner_text h1 {
+  font-size: 70px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  margin-bottom: 17px;
+  padding-right: 5px;
+  line-height: 1.2;
+}
+
+.banner_text h3 {
+  font-weight: 400;
+  font-size: 1.4em;
+  margin-bottom: 24px;
+}
+
+.buttons-container {
+  display: flex;
+  column-gap: 25px;
+}
+
+.buttons-container button {
+  padding: 12px 23px;
+  font-size: 0.8em;
+  border-radius: 10px;
+  letter-spacing: .4px;
+}
+
+.buttons-container button {
+  background-color: rgb(14, 28, 54);
+  color: #FFF8E8;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.buttons-container button:hover {
+  background-color: rgb(44, 59, 89);
+  transform: scale(1.1, 1.1);
+}
+
+footer {
+  background-image: linear-gradient(to bottom right, #0E1C36, #2c4574);
+  color: #FFF8E8;
+  display: flex;
+  padding: 30px 40px;
+  text-align: center;
+  flex-wrap: wrap;
+  row-gap: 50px;
+}
+footer a {
+  color: inherit;
+}
+footer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer  div{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  align-items: center;
+  min-width: 300px;
+}
+
+footer .description-container{
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  min-width: 400px;
+}
+
+footer .description-container p{
+  width: 70%;
+  text-align: justify;
+  line-height: 35px;
+}
+footer .description-container .title{
+  font-weight: 800;
+  font-size: 30px;
+}
+.description-container .title {
+  display: inline-block;
+}
+
+.description-container .title .color2{
+  margin-left: -6px;
+}
+
+
+
+
+
+/*\\
+footer h2 {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+footer p,
+a {
+  padding-bottom: 10px;
+}
+
+footer p {
+  padding-top: 10px;
+  line-height: 2;
+}
+
+footer a {
+  color: inherit;
+  text-decoration-color: inherit;
+  position: relative;
+  padding: 10px;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: inherit;
+}
+
+.footer_NUHow {
+  padding-top: 20px;
+  display: grid;
+  width: 400px;
+  text-align: justify;
+}
+
+.footer_title {
+  font-weight: 800;
+  font-size: 30px;
+  text-align: center;
+}
+
+.footer_credits {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 80px;
+  text-align: center;
+}
+
+.footer_credits h2 {
+  text-align: center;
+}
+
+
+.footer_names {
+  display: grid;
+  height: auto;
+  width: auto;
+  text-align: left;
+}
+
+.footer_email {
+  display: grid;
+  height: auto;
+  width: auto;
+  text-align: left;
+}
+
+.footer_git {
+  display: grid;
+  height: auto;
+  width: auto;
+  text-align: left;
+}*/
 
