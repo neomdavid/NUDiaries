@@ -1,20 +1,23 @@
 import { formatTime } from "./utils/formatTime.js";
-import { submissions,getSubmissionByPostId,removeSubmissionByPostId } from "./data/submissions.js";
-import { addPost } from "./data/posts.js";
+import { submissions,getSubmissionByPostId,removeSubmissionByPostId} from "./data/submissions.js";
+import { addPost} from "./data/posts.js";
+import { featurePost } from "./data/featured.js";
 
 renderAdminWall();
+
 function renderAdminWall() {
   console.log(submissions);
   let submissionsHTML = ``;
 
-  submissions.forEach((submission) => {
+  submissions.slice().reverse().forEach((submission) => {
     
     submissionsHTML += `
+
       <div class="post-container js-post-container" data-post-id=${submission.postId}>
         <div class="action-container">
             <div class="approve" data-post-id=${submission.postId}>Approve</div>
             <div class="reject" data-post-id=${submission.postId}>Reject</div>
-            <div class="feature">Feature</div>
+            <div class="feature" data-post-id=${submission.postId}>Feature</div>
         </div>
         <div class="profile-container">
           <div class="profile-image-container">
@@ -35,6 +38,7 @@ function renderAdminWall() {
           <p style="background-color:${submission.theme}">${submission.message}</p>  
         </div>
       </div>
+
       
     `;
   });
@@ -88,5 +92,28 @@ function renderAdminWall() {
 
     
     })
-  })
+  });
+
+  document.querySelectorAll('.feature').forEach((featureButton)=>{
+    featureButton.addEventListener('click',()=>{
+      
+      const featureContainer= document.querySelector('.feature-container');
+      featureContainer.style = "display: flex";
+
+      document.querySelector('.feature-container .confirm').addEventListener('click',()=>{
+        const {postId} = featureButton.dataset;
+        const featured = getSubmissionByPostId(postId);
+        featurePost(featured.postId, featured.author, featured.title, featured.message, featured.theme || 'rgb(99, 211, 130)', featured.topic || 'images/technology.png', featured.time, featured.profilePicture);
+        removeSubmissionByPostId(featured.postId);
+        renderAdminWall();
+        featureContainer.style="display:none";
+      });
+
+      document.querySelector('.feature-container .cancel').addEventListener('click',()=>{
+        featureContainer.style = "display: none";
+      });
+
+    
+    })
+  });
 }

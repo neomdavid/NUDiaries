@@ -1,6 +1,6 @@
 // typing animaion script
 var typed = new Typed(".typing", {
-    strings: ["NUHow🐶","How?", "Paano?", "Nani?", "Hvernig?", "어떻게?", "Conas?", "Hoe?", "どう?", "Πώς?", "Wie?", "Bagaimana?", "Woof Madafaka"],
+    strings: ["Welcome to NUHow!", "How?", "Paano?", "Hvernig?", "어떻게?", "Conas?", "Hoe?", "どう?", "Πώς?", "Wie?", "Bagaimana?", "¿Cómo?", "Comment?", "Come?", "Como?", "Как?", "怎么样？", "كيف؟", "कैसे?", "কিভাবে?", "どのように？", "Nasıl?", "Hur?", "Jak?"],
     typeSpeed: 120,
     backSpeed: 80,
     loop: true

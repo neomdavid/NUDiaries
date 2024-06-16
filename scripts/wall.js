@@ -7,9 +7,58 @@ import { addEventListenerForThemes } from "./utils/addEventListenerThemes.js";
 
 function renderWall() {
   let postsHTML = ``;
-  document.querySelector('.js-messages-found').innerHTML = `${posts.length} Messages Found`;
+  // add messages-found to below, if js-messages-found only, it clears out the entire div aside from the number of messages found
+  document.querySelector('.js-messages-found .messages-found').innerHTML = `${posts.length} Messages Found`;
 
+  posts.slice().reverse().forEach((post) => {
+    
+    postsHTML += `
+      <a href="comments.html?postId=${post.postId}"><div class="post-container js-post-container" data-post-id=${post.postId}>
+        <div class="profile-container">
+          <div class="profile-image-container">
+            <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
+          </div>
+          <div class="details-container">
+            <p class="title">${post.title}</p>
+            <p class="name">${post.author}</p>
+            <p class="status">${formatTime(post)}</p>
+          </div>
+          <div class="topic-image-container">
+            <div>
+             <img src="${post.topic}">
+            </div>
+          </div>
+        </div>
+        <div class="message-container">
+          <p style="background-color:${post.theme}">${post.message}</p>  
+        </div>
+      </div>
+      </a>
+    `;
+  });
+
+  document.querySelector('.js-posts-list-container').innerHTML = postsHTML;
+
+  document.querySelectorAll('.js-post-container').forEach((container)=>{
+    container.addEventListener('click',()=>{
+      const {postId} = container.dataset;
+      console.log(postId);
+    })
+  });  
+}
+
+// For filtering the posts via the search bar.
+function filterPosts(search_value) {
+  /* probably make everything lowercase for value in searching author? */
+  let postsHTML = ``;
+  let filtered = [];
   posts.forEach((post) => {
+    const regex = new RegExp(search_value, 'i'); // Creates a case-insensitive regex object, that is based on the search_value
+    filtered = posts.filter(post => regex.test(post.author)); // Appends only to the filtered array the posts with authors that matched the search_value
+  })
+  document.querySelector('.js-messages-found .messages-found').innerHTML = `${filtered.length} Messages Found`;
+
+  filtered.forEach((post) => {
     
     postsHTML += `
       <a href="comments.html?postId=${post.postId}"><div class="post-container js-post-container" data-post-id=${post.postId}>
@@ -45,8 +94,8 @@ function renderWall() {
     })
   });
   
-  
 }
+
 
 let theme;
 let topic;
@@ -214,4 +263,9 @@ document.querySelector('.messager-container textarea').addEventListener('input',
   document.querySelector('.message-error-max').style.display = "none";
   document.querySelector('.messager-container textarea').style.borderColor = "";
   document.querySelector('.messager-container div').style.color = "";
+});
+
+document.querySelector('.search-bar').addEventListener('keyup', () => {
+  let value = document.querySelector('.search-bar').value;
+  filterPosts(value);
 });

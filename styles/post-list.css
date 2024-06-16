@@ -7,17 +7,22 @@
   row-gap: 25px;
   vertical-align: top;
   margin-top: 60px;
+  margin-bottom: 150px;
 }
 .post-container{
   display: flex;
   flex-direction: column;
   background-color: rgb(249, 246, 246);
-  width: 300px;
-  height: 340px;
+  width: 350px;
+  height: 390px;
   padding: 20px 15px;
   border-radius: 12px;
   box-shadow: 0px 7px 10px 1px rgba(174, 173, 173, 0.25);
   letter-spacing: .4px;
+  transition: transform 0.3s;
+}
+.post-container:hover{
+  transform: scale(1.1);
 }
 .profile-container{
   display: flex;
