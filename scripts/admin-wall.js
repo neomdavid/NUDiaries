@@ -1,49 +1,14 @@
 import { formatTime } from "./utils/formatTime.js";
 import { submissions,getSubmissionByPostId,removeSubmissionByPostId} from "./data/submissions.js";
 import { addPost} from "./data/posts.js";
-import { featurePost } from "./data/featured.js";
+import { featurePost,featured } from "./data/featured.js";
+import { posts } from "./data/posts.js";
 
 renderAdminWall();
 
 function renderAdminWall() {
-  console.log(submissions);
-  let submissionsHTML = ``;
 
-  submissions.slice().reverse().forEach((submission) => {
-    
-    submissionsHTML += `
-
-      <div class="post-container js-post-container" data-post-id=${submission.postId}>
-        <div class="action-container">
-            <div class="approve" data-post-id=${submission.postId}>Approve</div>
-            <div class="reject" data-post-id=${submission.postId}>Reject</div>
-            <div class="feature" data-post-id=${submission.postId}>Feature</div>
-        </div>
-        <div class="profile-container">
-          <div class="profile-image-container">
-            <img src="${submission.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
-          </div>
-          <div class="details-container">
-            <p class="title">${submission.title}</p>
-            <p class="name">${submission.author}</p>
-            <p class="status">${formatTime(submission)}</p>
-          </div>
-          <div class="topic-image-container">
-            <div>
-             <img src="${submission.topic}">
-            </div>
-          </div>
-        </div>
-        <div class="message-container">
-          <p style="background-color:${submission.theme}">${submission.message}</p>  
-        </div>
-      </div>
-
-      
-    `;
-  });
-
-  document.querySelector('.js-posts-list-container').innerHTML = submissionsHTML;
+  renderSubmissionInWall(submissions);
 
   document.querySelectorAll('.js-post-container').forEach((container)=>{
     container.addEventListener('click',()=>{
@@ -51,6 +16,90 @@ function renderAdminWall() {
     })
   });
   
+  document.querySelector('.js-nav-wall').addEventListener('click',()=>{
+    document.querySelector('.js-title-top').innerHTML='Wall'
+    renderNonSubmissionsInWall(posts);
+  });
+  document.querySelector('.js-nav-submissions').addEventListener('click',()=>{
+    document.querySelector('.js-title-top').innerHTML='Submissions';
+    renderSubmissionInWall(submissions);
+  });
+  document.querySelector('.js-nav-featured').addEventListener('click',()=>{
+    document.querySelector('.js-title-top').innerHTML='Featured';
+    renderNonSubmissionsInWall(featured);
+  });
+
+
+  function renderSubmissionInWall(data){
+    let adminWallHTML=``;
+    data.slice().reverse().forEach((post)=>{
+      adminWallHTML+=`
+      <div class="post-container js-post-container" data-post-id=${post.postId}>
+        <div class="action-container">
+            <div class="approve" data-post-id=${post.postId}>Approve</div>
+            <div class="reject" data-post-id=${post.postId}>Reject</div>
+            <div class="feature" data-post-id=${post.postId}>Feature</div>
+        </div>
+        <div class="profile-container">
+          <div class="profile-image-container">
+            <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
+          </div>
+          <div class="details-container">
+            <p class="title">${post.title}</p>
+            <p class="name">${post.author}</p>
+            <p class="status">${formatTime(post)}</p>
+          </div>
+          <div class="topic-image-container">
+            <div>
+             <img src="${post.topic}">
+            </div>
+          </div>
+        </div>
+        <div class="message-container">
+          <p style="background-color:${post.theme}">${post.message}</p>  
+        </div>
+      </div>
+    `
+    })
+    document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
+    addEventListenerForAdminChoices();
+  }
+  function renderNonSubmissionsInWall(data){
+    let adminWallHTML=``;
+    data.slice().reverse().forEach((post)=>{
+      adminWallHTML+=`
+    
+      <div class="post-container js-post-container" data-post-id=${post.postId}>
+        <div class="profile-container">
+          <div class="profile-image-container">
+            <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
+          </div>
+          <div class="details-container">
+            <p class="title">${post.title}</p>
+            <p class="name">${post.author}</p>
+            <p class="status">${formatTime(post)}</p>
+          </div>
+          <div class="topic-image-container">
+            <div>
+             <img src="${post.topic}">
+            </div>
+          </div>
+        </div>
+        <div class="message-container">
+          <p style="background-color:${post.theme}">${post.message}</p>  
+        </div>
+      </div>
+
+    `
+    })
+    document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
+  }
+
+
+}
+
+function addEventListenerForAdminChoices(){
+
   document.querySelectorAll('.approve').forEach((approveButton)=>{
     approveButton.addEventListener('click',()=>{
 
