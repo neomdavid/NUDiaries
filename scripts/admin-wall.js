@@ -3,10 +3,17 @@ import { submissions,getSubmissionByPostId,removeSubmissionByPostId} from "./dat
 import { addPost} from "./data/posts.js";
 import { featurePost,featured } from "./data/featured.js";
 import { posts } from "./data/posts.js";
+import { currentAccount } from "./data/admin.js";
 
 renderAdminWall();
 
 function renderAdminWall() {
+  console.log(currentAccount);
+
+  document.querySelector('.profile-container .name').innerHTML = currentAccount.name;
+
+  document.querySelector('.profile-container .role').innerHTML = currentAccount.role;
+  document.querySelector('.profile-container img').src = currentAccount.image;
 
   renderSubmissionInWall(submissions);
 

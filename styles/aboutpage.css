@@ -214,34 +214,31 @@ hr::before {
     height: 100%;
     object-fit: cover;
 }
-
 .blob {
     position: absolute;
     left: 50%;
     bottom: -44%;
-    width: 45%; 
-    height: 110%; 
+    width: 45vw; /* Adjusted to viewport width */
+    height: 90vh; /* Adjusted to viewport height */
     background-color: #faddc3;
-    border-radius: 50% 110% 60% 50% / 40% 50% 40% 60%; 
-    transform: translateX(-50%) rotate(-85deg); 
-    z-index: -100; 
-    object-fit: contain;
+    border-radius: 50% 110% 60% 50% / 40% 50% 40% 60%;
+    transform: translateX(-50%) rotate(-85deg);
+    z-index: -100;
 }
 
 .blob2 {
     position: absolute;
     left: 90%;
     bottom: -10%;
-    width: 60%; 
-    height: 60%; 
+    width: 30vw; /* Adjusted to viewport width */
+    height: 30vh; /* Adjusted to viewport height */
     background-color: #faddc3;
-    border-radius: 50% 40% 60% 50% / 90% 50% 40% 60%; 
-    transform: translateX(-50%) rotate(85deg); 
-    z-index: -100; 
+    border-radius: 50% 40% 60% 50% / 90% 50% 40% 60%;
+    transform: translateX(-50%) rotate(85deg);
+    z-index: -100;
 }
-
 .bgcolor2 {
-    background-image: linear-gradient(to bottom, #faddc3, #8080c063);
+    background-image: linear-gradient(to bottom, #faddc3, #8080c0db);
     height: 700px;
     position: static;
     z-index: 100;
@@ -273,6 +270,7 @@ hr::before {
     flex-wrap: wrap;
     justify-content: center;
     row-gap: 60px;
+    column-gap: 10px;
 }
 
 .card {
@@ -435,5 +433,37 @@ hr::before {
         object-fit: cover;
         object-position: 0% 30%;
         height: 500px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .blob {
+        width: 55vw;
+        height: 70vh;
+    }
+    .blob2 {
+        width: 40vw;
+        height: 40vh;
+    }
+    .image_container{
+        min-width: 10px;
+        width: 90vw;
+        height: 60vh;
+    }
+    .image_container img{
+        width: 90vw;
+        height: 60vh;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .blob {
+        width: 60vw;
+        height: 90vw;
+        bottom: -65%;
+    }
+    .blob2 {
+        width: 90vw;
+        height: 90vh;
+        left: 0;
     }
 }

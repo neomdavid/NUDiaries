@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+a{
+    text-decoration: none;
+}
 body {
     background: url(/NUHow/images/login_img.jpg) no-repeat;
     background-position: center;

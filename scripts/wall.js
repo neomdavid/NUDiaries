@@ -48,14 +48,29 @@ function renderWall() {
 }
 
 // For filtering the posts via the search bar.
-function filterPosts(search_value) {
+
+// For filtering the posts via the search bar.
+function filterPosts(filter, sort_by, search_value) {
   /* probably make everything lowercase for value in searching author? */
   let postsHTML = ``;
-  let filtered = [];
-  posts.forEach((post) => {
-    const regex = new RegExp(search_value, 'i'); // Creates a case-insensitive regex object, that is based on the search_value
-    filtered = posts.filter(post => regex.test(post.author)); // Appends only to the filtered array the posts with authors that matched the search_value
-  })
+  // let filtered = [];
+  let filtered = posts;
+
+  const regex = new RegExp(search_value, 'i');      // Creates a case-insensitive regex object, that is based on the search_value
+  const filter_regex = new RegExp(filter, 'i');
+
+  // Filter sorting - Either All Posts or based on Topic (Technology, Literature...)
+  if (!(filter === "all posts")) {
+    filtered = filtered.filter(post => filter_regex.test(post.topic));
+  }
+  console.log("After filter: " + filtered);
+
+  // Search by selected category for sort (Author, Message...), then searches for value inputted in search bar.
+  if (!(sort_by === "none")){
+    filtered = filtered.filter(post => regex.test(post[sort_by]));
+  }
+  console.log("After sort: " + filtered);
+  
   document.querySelector('.js-messages-found .messages-found').innerHTML = `${filtered.length} Messages Found`;
 
   filtered.forEach((post) => {
@@ -95,6 +110,7 @@ function filterPosts(search_value) {
   });
   
 }
+
 
 
 let theme;
@@ -265,7 +281,108 @@ document.querySelector('.messager-container textarea').addEventListener('input',
   document.querySelector('.messager-container div').style.color = "";
 });
 
-document.querySelector('.search-bar').addEventListener('keyup', () => {
+// document.querySelector('.search-bar').addEventListener('keyup', () => {
+//   let value = document.querySelector('.search-bar').value;
+//   filterPosts(value);
+// });
+
+document.getElementById('search-icon').addEventListener('click', () => {
+  // input here to sort whether by topic, author, or message, or title?
+  let filter = document.getElementById('filter-spantext').innerText.toLowerCase();
+  let sort_by = document.getElementById('sort-spantext').innerText.toLowerCase();
   let value = document.querySelector('.search-bar').value;
-  filterPosts(value);
+  console.log(filter, sort_by, value);
+  filterPosts(filter, sort_by, value);
+});
+
+// Function to toggle the visibility of the sublists
+document.getElementById('filter-drop-text').addEventListener('click', () => {
+  showSubList('filter-list');
+});
+
+document.getElementById('sort-drop-text').addEventListener('click', () => {
+  showSubList('search-list');
+});
+
+function showSubList(subListId) {
+  // Get all sublists and hide them
+  const subMenus = document.querySelectorAll('.dropdown .dropdown-list');
+  subMenus.forEach(subMenu => {
+    subMenu.style.display = 'none';
+  });
+
+  // Toggle the visibility of the selected sublist
+  const selectedSubMenu = document.getElementById(subListId);
+  if (selectedSubMenu.style.display === 'none') {
+    selectedSubMenu.style.display = 'block';
+  } else {
+    selectedSubMenu.style.display = 'none';
+  }
+
+  // Close the main dropdown list
+  document.getElementById(subListId).classList.remove("show");
+};
+
+// Filter Dropdown
+let filterDropdownBtn = document.getElementById("filter-drop-text");
+let filterMainList = document.getElementById("filter-list");
+let filterIcon = document.getElementById("filter-icon");
+let filterSpan = document.getElementById("filter-spantext");
+
+// Sort Dropdown
+let sortDropdownBtn = document.getElementById("sort-drop-text");
+let sortMainList = document.getElementById("search-list");
+let sortIcon = document.getElementById("sort-icon");
+let sortSpan = document.getElementById("sort-spantext");
+
+
+// Show/hide the filter dropdown list
+filterDropdownBtn.onclick = function() {
+  if (filterMainList.classList.contains("show")) {
+    filterIcon.style.rotate = "0deg";
+  } else {
+    filterIcon.style.rotate = "-180deg";
+  }
+  filterMainList.classList.toggle("show");
+};
+
+// Show/hide the sort dropdown list
+sortDropdownBtn.onclick = function() {
+  if (sortMainList.classList.contains("show")) {
+    sortIcon.style.rotate = "0deg";
+  } else {
+    sortIcon.style.rotate = "-180deg";
+  }
+  sortMainList.classList.toggle("show");
+};
+
+// Hide the dropdown list is user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.closest('.dropdown-text')) {
+    document.querySelectorAll('.dropdown-list').forEach(list => {
+      list.classList.remove("show");
+      list.style.display = 'none';
+    });
+    document.querySelectorAll('.fa-chevron-down').forEach(icon => {
+      icon.style.rotate = "0deg";
+    });
+  }
+};
+
+// Handle clicking on filter dropdown items
+filterMainList.querySelectorAll('.dropdown-list-item').forEach(item => {
+  item.onclick = function(e) {
+    if (!e.target.querySelector('ul')) {
+      filterSpan.innerText = e.target.innerText;
+    }
+  }
+});
+
+// Handle clicking on sort dropdown items
+sortMainList.querySelectorAll('.dropdown-list-item').forEach(item => {
+  item.onclick = function(e) {
+    if (!e.target.querySelector('ul')) {
+      sortSpan.innerText = e.target.innerText;
+    }
+  }
 });

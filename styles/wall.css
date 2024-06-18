@@ -1,10 +1,16 @@
+main{
+  width: 100vw;
+}
+#rendering-information{
+  width: 100vw;
 
+}
 .scroll-up-btn {
   position: fixed;
   height: 45px;
   width: 42px;
   background: rgb(14, 28, 54);
-  right: 30px;
+  right: 31px;
   bottom: 10px;
   vertical-align: middle;
   text-align: center;
@@ -20,7 +26,7 @@
 }
 
 .scroll-up-btn.show{
-  bottom: 30px;
+  bottom: 90px;
   opacity: 1;
   pointer-events: auto;
 }
@@ -37,26 +43,132 @@
   margin-bottom: 17px;
 }
 .search-container {
+  display: flex;
+  align-items: center;
   background-color: #FFFFFF;
   color: #757575;
+  position: relative;
+  border: 1px solid black;
+  z-index: 1;
+  width:50%;
+  z-index: 0;
+}
+
+.dropdown {
+  display: flex;
+  flex:2;
+  flex-direction: row;
+  position: relative;
+  height: 45px;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  background: #f5f5f5;;
+  color: rgb(14, 28, 54); 
+  align-items: center;
+  width: 100%;
+}
+
+.dropdown-text {
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  padding: 0.5rem 0.5rem;
+  width: 100%
+}
+
+.dropdown-text:hover, .dropdown-text:focus{
+  height: 70%;
+  width: 50%;
   border-radius: 10px;
+  background: rgb(230, 230, 230);
+}
+
+.dropdown-list {
+  position: absolute; /* Ensure dropdowns are taken out of the document flow */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  padding: 0;
+  display: none; /* Hide by default */
+  z-index: 1000; /*Ensure it appears above other elements*/
+  top: 50px;
+}
+
+.dropdown-list.show {
+  display: block;
+}
+
+.dropdown-list > .dropdown-list-item {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+}
+
+.dropdown-list-item {
+  position: relative;
+  width: 86%;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-list-item:hover { 
+  background: rgb(244, 244, 244);
+  color: rgb(14, 28, 54);
+  /*make width of highlight match the list container*/
+  cursor: pointer;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  flex: 4;
+  
 }
 
 .search-bar {
-  background-image: url('../images/search-icon.png');
-  background-repeat: no-repeat;
   background-size: 20px 20px;
   background-position: 8px center;
-  padding: 10px 10px 10px 35px;
-  border-radius: 10px;
+  padding: 10px;
+  border: 0;
+  outline: 0;
   font-size: 13px;
+  height: 30px;
+  min-width: none;
+  width: 80%;
 }
 
-.search-bar:hover {
-  border: 1px solid black;
+#search-icon {
+  font-size: 30px;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 0 10px;
+  cursor: pointer;
 }
 
+.search-container hr {
+  border: none; 
+  border-left: 1px solid #000; 
+  height: 40px; 
+  margin: 0 1px;
+}
 
+.search-container .dropdown hr {
+  border: none; 
+  border-left: 1px solid #000; 
+  height: 40px; 
+  margin: 0 1px;
+}
 
 .wrapper{
   position: fixed;
@@ -83,16 +195,21 @@
 
 .write-message-container {
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 50%;
   width: 570px;
-  background-color: rgb(255, 248, 232);
+  background: linear-gradient(160deg, #e6ddd0a6, #cfc1b0b3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
   z-index: 100;
   transform: translate(-50%, -50%); 
   border-radius: 15px;
   padding-right: 100px;
   flex-direction: column;
-  padding: 20px 30px;
+  border: 1px solid #0E1C36;
+  border-radius: 12px;
+  padding: 10px 20px;
   display: none;
   padding-right: 40px;
 }
@@ -156,13 +273,15 @@ input:focus {
 .author-container input,
 .title-container input{
   width: 98%;
-  background-color: transparent;
-  border-radius: 0;
+  background: transparent;
+  border-radius: 10px;
   border: solid 1.8px black;
   height: 30px;
   padding: 0;
   padding-left: 10px;
   margin-top: 3px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 /*
 .author-container textarea {
@@ -183,10 +302,13 @@ input:focus {
   width: 96%;
   height: 230px;
   background-color: transparent;
-  border-radius: 0;
+  border-radius: 10px;
   border: solid 1.8px black;
   outline: none;
   padding: 10px 10px;
+  resize: none;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 .theme-container{
   display: flex;
@@ -234,6 +356,7 @@ input:focus {
   display: flex;
   margin-top: 15px;
   align-items: center;
+  cursor: pointer;
 }
 .topic-container p {
   margin-right: 15px;

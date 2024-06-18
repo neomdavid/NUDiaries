@@ -9,13 +9,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
+ 
+  <!-- EMBEDDED CHATBOT -->
+  <link rel="stylesheet" href="https://embed.pickaxeproject.com/axe/scripts/fab/styles.css">
+  <script src="https://embed.pickaxeproject.com/axe/scripts/fab/bundle.js"></script>
+  <div id="rendering-information" data-height="500px" data-width="100%" data-formid="NUHow__Website_Assistant_4ZCXG" data-frame-source="https://embed.pickaxeproject.com/axe?id=NUHow__Website_Assistant_4ZCXG&mode=embed_gold&host=beta&theme=custom&opacity=50&font_header=Real+Head+Pro&size_header=30&font_body=Real+Head+Pro&size_body=16&font_labels=Real+Head+Pro&size_labels=14&font_button=Real+Head+Pro&size_button=16&c_fb=08090B&c_ff=08090B&c_fbd=FFFFFF&c_rb=7F7F7F&c_bb=FFFFFF&c_bt=FFFFFF&c_t=FFFFFF&s_ffo=100&s_rbo=100&s_bbo=100&s_f=minimalist&s_b=outline&s_t=0.5&s_to=1&s_r=10" data-title="NUHow - Assistant"> <meta charset="UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NUHow - Home</title>
 </head>
 <body>
 
+
   <header class = 'header'>
+    <img class="menu"src="images/menu.png">
+    <div class="slider">
+      <a href="wall.html">Home</a>
+      <a href="featuredpage.html">Featured</a>
+      <a href="aboutpage.html">About</a>
+      <a href="contactpage.html">Contact</a>
+      <a href="loginpage.html">Admin Log In</a>
+    </div>
     <div class = 'header_name'>
       <div class = 'header_title'><a href="wall.html"><span class = 'color1'>NU</span><span class = 'color2'>How</span></a></div>
     </div>
@@ -45,8 +59,10 @@
                 <h3>A Guide For Nationalians, by Nationalians.</h3>
                 <div class="buttons-container">
                   <button class="learn-more">
+                    <a href="aboutpage.html">
                     <i class = "fa fa-book"></i>
                     &nbsp;Learn More</button>
+                    </a>
                   <button class="js-write-button">
                     <i class = "fa fa-pencil"></i>
                     &nbsp;Post a Question</button>
@@ -60,7 +76,46 @@
   <div class="messages-found-container js-messages-found">
     <div class="messages-found"></div>
     <div class="search-container">
-      <input class="search-bar" placeholder="Search for an Author">
+  
+      <!-- Dropdown container for the search container -->
+      <div class="dropdown">
+
+        <!-- Filter Dropdown (Topics)-->
+        <div id="filter-drop-text" class="dropdown-text">
+          <span id="filter-spantext">Filter</span>
+          <i id="filter-icon" class="fa-solid fa-chevron-down"></i>
+        </div>
+        <ul id="filter-list" class="dropdown-list">
+          <li class="dropdown-list-item">All Posts</li>
+          <li class="dropdown-list-item">Technology</li>
+          <li class="dropdown-list-item">Literature</li>
+          <li class="dropdown-list-item">Art</li>
+          <li class="dropdown-list-item">Politics</li>
+        </ul>
+
+        <hr>
+
+        <!-- Sort Dropdown (Author, Title, Message)-->
+        <div id="sort-drop-text" class="dropdown-text">
+          <span id="sort-spantext">Sort</span>
+          <i id="sort-icon" class="fa-solid fa-chevron-down"></i>
+        </div>
+        <ul id="search-list" class="dropdown-list" >
+          <li class="dropdown-list-item">None</li>
+          <li class="dropdown-list-item">Author</li>
+          <li class="dropdown-list-item">Title</li>
+          <li class="dropdown-list-item">Message</li>
+        </ul>
+
+      </div>
+
+      <div class="search-box">
+        <hr>
+        <input id="search-input" class="search-bar" placeholder="Search">
+        <hr>
+        <i id="search-icon" class="fa fa-search"></i>
+      </div> 
+      
     </div>
   </div>
 
@@ -70,7 +125,9 @@
   <div class="wrapper">
   </div> 
   <div class="write-message-container">
-    <div class="exit-button">x</div>
+    <div class="exit-button">
+      <i class="fa fa-times"></i>
+    </div>
     <div class="write-container">
       <!-- Hidden file input -->
       <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
@@ -91,7 +148,7 @@
     </div>
     <div class="messager-container">
       <div>Message:</div>
-      <textarea></textarea>
+      <textarea rows="10"></textarea>
       <div class="message-error-max">Reached 300 max characters.</div>
       <div class="message-error-none">Input a character.</div>
     </div>
@@ -166,7 +223,7 @@
   <script src="styles/frontend/textchange.js" type="module"></script>
   <script src="styles/frontend/buttonup.js"></script>
   <script src="styles/frontend/floating.js"></script>
-
+  <script src="styles/frontend/slider.js"></script>
   
 </body>
 </html>

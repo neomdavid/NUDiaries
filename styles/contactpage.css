@@ -253,3 +253,11 @@ textarea:not(:focus)::placeholder {
 @media only screen and (max-width:700px){
  
 }
+
+#the-count {
+  position: fixed;
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
+  right: 6%;
+}
