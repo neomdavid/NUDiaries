@@ -1,8 +1,8 @@
 export let featured = JSON.parse(localStorage.getItem('featured')) || [{
   postId: '22',
-  author: 'Featured',
-  title: 'Featured',
-  message: 'anofwaefawefawefsawnfoaefkanwefknaskdnflkanweklfnklasdnflkanwklefnklandsklfnaklwdnfklanwdklfnawklndfkawawefkwemfkanwekfnkawfwafewaawfeawakefnkajwnefawknefknawekfnkawenfkawnfwakefmkwafnkwaefnkawnefkaweekewnwaelfawlmefwlmeflawmflemwflaemflawwaefawefawfeawes',
+  author: 'ANONYMOUS USER',
+  title: 'NU Exchange',
+  message: 'Kailan po ang restock ng NU uniforms?',
   theme: 'rgb(99, 211, 130)',
   topic: 'images/technology.png',
   time: 'June 1, 2024',

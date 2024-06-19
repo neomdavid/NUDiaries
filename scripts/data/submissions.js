@@ -1,5 +1,5 @@
 export let submissions = JSON.parse(localStorage.getItem('submissions')) || [{
-  postId: 4,
+  postId: 100,
   author: 'Try',
   title: 'Submitted Post',
   message: 'submitsubmitsubmit',
@@ -9,7 +9,7 @@ export let submissions = JSON.parse(localStorage.getItem('submissions')) || [{
   profilePicture: null,
   comments: null
 },{
-  postId: 4,
+  postId: 1001,
   author: 'Try',
   title: 'Submitted Post',
   message: 'submitsubmitsubmit',

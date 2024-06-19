@@ -1,4 +1,7 @@
 import { accounts, logInAccount } from "./data/admin.js";
+import { notAdmin } from "./data/admin.js";
+
+notAdmin();
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();

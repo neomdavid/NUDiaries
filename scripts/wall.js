@@ -3,14 +3,19 @@ import { submitPost } from "./data/submissions.js";
 import { formatTime } from "./utils/formatTime.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { addEventListenerForThemes } from "./utils/addEventListenerThemes.js";
+import { generatePostId } from "./data/posts.js";
+import { notAdmin } from "./data/admin.js";
 
+notAdmin();
+
+const wallPosts = posts.filter(post => !post.featured); // Posts that have featured set to false
 
 function renderWall() {
   let postsHTML = ``;
   // add messages-found to below, if js-messages-found only, it clears out the entire div aside from the number of messages found
-  document.querySelector('.js-messages-found .messages-found').innerHTML = `${posts.length} Messages Found`;
+  document.querySelector('.js-messages-found .messages-found').innerHTML = `${wallPosts.length} Messages Found`;
 
-  posts.slice().reverse().forEach((post) => {
+  wallPosts.slice().reverse().forEach((post) => {
     
     postsHTML += `
       <a href="comments.html?postId=${post.postId}"><div class="post-container js-post-container" data-post-id=${post.postId}>
@@ -54,7 +59,7 @@ function filterPosts(filter, sort_by, search_value) {
   /* probably make everything lowercase for value in searching author? */
   let postsHTML = ``;
   // let filtered = [];
-  let filtered = posts;
+  let filtered = wallPosts;
 
   const regex = new RegExp(search_value, 'i');      // Creates a case-insensitive regex object, that is based on the search_value
   const filter_regex = new RegExp(filter, 'i');
@@ -126,7 +131,7 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
   const hasError = validatePost(author, title, message);
   
   if (!hasError) {
-    submitPost(String(posts.length + 1), author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
+    submitPost(generatePostId(), author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
     clearAddedPostInput();
     clearErrorStyles();
     wrapper.classList.remove('visible');
