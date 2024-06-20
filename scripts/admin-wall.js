@@ -9,6 +9,8 @@ import { adminLogged } from "./data/admin.js";
 let wallPosts = posts.filter(post => !post.featured); // Posts that have featured set to false
 let featuredPosts = posts.filter(post => post.featured); // Posts that have featured set to true
 
+let currentlyLoggedData = [];
+
 adminLogged();
 renderAdminWall();
 
@@ -23,7 +25,8 @@ function renderAdminWall() {
   document.querySelector('.profile-container .role').innerHTML = currentAccount.role;
   document.querySelector('.profile-container img').src = currentAccount.image;
 
-  renderSubmissionInWall(submissions);
+  // renderSubmissionInWall(submissions);
+  renderWall(submissions, true);
 
   document.querySelectorAll('.js-post-container').forEach((container)=>{
     container.addEventListener('click',()=>{
@@ -33,79 +36,130 @@ function renderAdminWall() {
   
   document.querySelector('.js-nav-wall').addEventListener('click',()=>{
     document.querySelector('.js-title-top').innerHTML='Wall';
-    renderNonSubmissionsInWall(wallPosts);
+    // renderNonSubmissionsInWall(wallPosts);
+    renderWall(wallPosts, false);
   });
   document.querySelector('.js-nav-submissions').addEventListener('click',()=>{
     document.querySelector('.js-title-top').innerHTML='Submissions';
-    renderSubmissionInWall(submissions);
+    // renderSubmissionInWall(submissions);
+    renderWall(submissions, true);
   });
   document.querySelector('.js-nav-featured').addEventListener('click',()=>{
     document.querySelector('.js-title-top').innerHTML='Featured';
-    renderNonSubmissionsInWall(featuredPosts);
+    // renderNonSubmissionsInWall(featuredPosts);
+    renderWall(featuredPosts, false);
   });
 
+}
 
-  function renderNonSubmissionsInWall(data){
-    console.log(data);
+function renderWall(data, isSubmission) {
+  console.log(data);
 
-    let adminWallHTML=``;
-    
-    data.slice().reverse().forEach((post)=>{
-      adminWallHTML+=`
-    <a href="comments.html?postId=${post.postId}">
-      <div class="post-container js-post-container" data-post-id=${post.postId}>
-        <div class="action-container">
-            <div class="delete" data-post-id=${post.postId}>Delete</div>
-            <div class="set-feature" data-post-id=${post.postId}>Feature/Unfeature</div>
-        </div>
-        <div class="profile-container">
-          <div class="profile-image-container">
-            <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
-          </div>
-          <div class="details-container">
-            <p class="title">${post.title}</p>
-            <p class="name">${post.author}</p>
-            <p class="status">${formatTime(post)}</p>
-          </div>
-          <div class="topic-image-container">
-            <div>
-             <img src="${post.topic}">
-            </div>
-          </div>
-        </div>
-        <div class="message-container">
-          <p style="background-color:${post.theme}">${post.message}</p>  
-        </div>
-        <div class="delete-container" style="display: none;">
-          <div class="confirm-message">
-            <img class="confirm-image" src="images/bin.png">
-            <p class="thank-you">Delete post?</p>
-            <p class="confirm-details">Once you confirm this, you cannot undo.</p>
-          </div>
-          <div class="confirm-choices-container">
-            <div class="confirm" data-post-id=${post.postId}>Confirm</div>
-            <div class="cancel">Cancel</div>
-          </div>
-        </div>
-        <div class="setFeature-container" style="display: none;">
-          <div class="confirm-message">
-            <img class="confirm-image" src="images/star.png">
-            <p class="thank-you">Change the feature status of this post?</p>
-            <p class="confirm-details">Once you confirm this, you cannot undo.</p>
-          </div>
-          <div class="confirm-choices-container">
-            <div class="confirm" data-post-id=${post.postId}>Confirm</div>
-            <div class="cancel">Cancel</div>
-          </div>
-        </div>
-      </div>
-    </a>
-    `
-    })
-    document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
-    addEventListenerForAdminChoices();
-  }
+  let adminWallHTML = ``;
+  document.querySelector('.messages-found').innerHTML = `${data.length} Messages Found`;
 
+  data.slice().reverse().forEach((post) => {
+      adminWallHTML += `
+          <div class="post-container js-post-container" data-post-id=${post.postId}>
+              <div class="action-container">
+                  ${isSubmission ? `
+                      <div class="approve" data-post-id=${post.postId}>Approve</div>
+                      <div class="reject" data-post-id=${post.postId}>Reject</div>
+                      <div class="feature" data-post-id=${post.postId}>Feature</div>
+                  ` : `
+                      <div class="delete" data-post-id=${post.postId}>Delete</div>
+                      <div class="set-feature" data-post-id=${post.postId}>Feature/Unfeature</div>
+                  `}
+              </div>
+              <div class="profile-container">
+                  <div class="profile-image-container">
+                      <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
+                  </div>
+                  <div class="details-container">
+                      <p class="title">${post.title}</p>
+                      <p class="name">${post.author}</p>
+                      <p class="status">${formatTime(post)}</p>
+                  </div>
+                  <div class="topic-image-container">
+                      <div>
+                          <img src="${post.topic}">
+                      </div>
+                  </div>
+              </div>
+              ${isSubmission ? `
+                  <div class="message-container">
+                      <p style="background-color:${post.theme}">${post.message}</p>
+                  </div>
+              ` : `
+                  <a href="comments.html?postId=${post.postId}" class="message-container">
+                      <p style="background-color:${post.theme}">${post.message}</p>
+                  </a>
+              `}
+              ${isSubmission ? `
+                  <div class="approve-container" style="display: none;">
+                      <div class="confirm-message">
+                          <img class="confirm-image" src="images/check-mark.png">
+                          <p class="thank-you">Approve post?</p>
+                          <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                      </div>
+                      <div class="confirm-choices-container">
+                          <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                          <div class="cancel">Cancel</div>
+                      </div>
+                  </div>
+                  <div class="reject-container" style="display: none;">
+                      <div class="confirm-message">
+                          <img class="confirm-image" src="images/bin.png">
+                          <p class="thank-you">Reject post?</p>
+                          <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                      </div>
+                      <div class="confirm-choices-container">
+                          <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                          <div class="cancel">Cancel</div>
+                      </div>
+                  </div>
+                  <div class="feature-container" style="display: none;">
+                      <div class="confirm-message">
+                          <img class="confirm-image" src="images/star.png">
+                          <p class="thank-you">Feature post?</p>
+                          <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                      </div>
+                      <div class="confirm-choices-container">
+                          <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                          <div class="cancel">Cancel</div>
+                      </div>
+                  </div>
+              ` : `
+                  <div class="delete-container" style="display: none;">
+                      <div class="confirm-message">
+                          <img class="confirm-image" src="images/bin.png">
+                          <p class="thank-you">Delete post?</p>
+                          <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                      </div>
+                      <div class="confirm-choices-container">
+                          <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                          <div class="cancel">Cancel</div>
+                      </div>
+                  </div>
+                  <div class="setFeature-container" style="display: none;">
+                      <div class="confirm-message">
+                          <img class="confirm-image" src="images/star.png">
+                          <p class="thank-you">Change the feature status of this post?</p>
+                          <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                      </div>
+                      <div class="confirm-choices-container">
+                          <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                          <div class="cancel">Cancel</div>
+                      </div>
+                  </div>
+              `}
+          </div>
+      `;
+  });
+
+  currentlyLoggedData = data;
+  document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
+  addEventListenerForAdminChoices();
 }
 
 function refreshWall(currentWall){
@@ -180,74 +234,6 @@ function refreshWall(currentWall){
   document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
   addEventListenerForAdminChoices();
 
-}
-function renderSubmissionInWall(data) {
-  console.log(data);
-  let adminWallHTML = ``;
-  data.slice().reverse().forEach((post) => {
-    adminWallHTML += `
-      <div class="post-container js-post-container" data-post-id=${post.postId}>
-        <div class="action-container">
-          <div class="approve" data-post-id=${post.postId}>Approve</div>
-          <div class="reject" data-post-id=${post.postId}>Reject</div>
-          <div class="feature" data-post-id=${post.postId}>Feature</div>
-        </div>
-        <div class="profile-container">
-          <div class="profile-image-container">
-            <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
-          </div>
-          <div class="details-container">
-            <p class="title">${post.title}</p>
-            <p class="name">${post.author}</p>
-            <p class="status">${formatTime(post)}</p>
-          </div>
-          <div class="topic-image-container">
-            <div>
-              <img src="${post.topic}">
-            </div>
-          </div>
-        </div>
-        <div class="message-container">
-          <p style="background-color:${post.theme}">${post.message}</p>  
-        </div>
-        <div class="approve-container" style="display: none;">
-          <div class="confirm-message">
-            <img class="confirm-image" src="images/check-mark.png">
-            <p class="thank-you">Approve post?</p>
-            <p class="confirm-details">Once you confirm this, you cannot undo.</p>
-          </div>
-          <div class="confirm-choices-container">
-            <div class="confirm" data-post-id=${post.postId}>Confirm</div>
-            <div class="cancel">Cancel</div>
-          </div>
-        </div>
-        <div class="reject-container" style="display: none;">
-          <div class="confirm-message">
-            <img class="confirm-image" src="images/bin.png">
-            <p class="thank-you">Reject post?</p>
-            <p class="confirm-details">Once you confirm this, you cannot undo.</p>
-          </div>
-          <div class="confirm-choices-container">
-            <div class="confirm" data-post-id=${post.postId}>Confirm</div>
-            <div class="cancel">Cancel</div>
-          </div>
-        </div>
-        <div class="feature-container" style="display: none;">
-          <div class="confirm-message">
-            <img class="confirm-image" src="images/star.png">
-            <p class="thank-you">Feature post?</p>
-            <p class="confirm-details">Once you confirm this, you cannot undo.</p>
-          </div>
-          <div class="confirm-choices-container">
-            <div class="confirm" data-post-id=${post.postId}>Confirm</div>
-            <div class="cancel">Cancel</div>
-          </div>
-        </div>
-      </div>
-    `;
-  });
-  document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
-  addEventListenerForAdminChoices();
 }
 
 function addEventListenerForAdminChoices() {
@@ -345,4 +331,131 @@ function addEventListenerForAdminChoices() {
       });
     });
   });
+}
+
+document.querySelector('.admin-searchbar').addEventListener('keypress', function(event) {
+  if (event.key === "Enter"){
+    let value = document.querySelector('.admin-searchbar').value;
+    filterPosts(value);
+  }
+});
+
+// Handling the filtering of the wall based on search.
+function filterPosts(value){
+  let wallPosts = currentlyLoggedData;
+  let filtered = [];
+
+  const regex = new RegExp(value, 'i'); 
+  filtered = wallPosts.filter(post => regex.test(post.author) || regex.test(post.title) || regex.test(post.message));
+  renderFilteredWall(filtered);
+}
+
+function renderFilteredWall(data) {
+  let currentWall = document.querySelector('.js-title-top').innerText;
+
+  let isSubmission = currentWall === 'Submissions';
+  
+  let adminWallHTML = ``;
+  document.querySelector('.messages-found').innerHTML = `${data.length} Messages Found`;
+  data.slice().reverse().forEach((post) => {
+    adminWallHTML += `
+        <div class="post-container js-post-container" data-post-id=${post.postId}>
+            <div class="action-container">
+                ${isSubmission ? `
+                    <div class="approve" data-post-id=${post.postId}>Approve</div>
+                    <div class="reject" data-post-id=${post.postId}>Reject</div>
+                    <div class="feature" data-post-id=${post.postId}>Feature</div>
+                ` : `
+                    <div class="delete" data-post-id=${post.postId}>Delete</div>
+                    <div class="set-feature" data-post-id=${post.postId}>Feature/Unfeature</div>
+                `}
+            </div>
+            <div class="profile-container">
+                <div class="profile-image-container">
+                    <img src="${post.profilePicture || 'images/bulldog.jpeg'}" alt="Profile Picture">
+                </div>
+                <div class="details-container">
+                    <p class="title">${post.title}</p>
+                    <p class="name">${post.author}</p>
+                    <p class="status">${formatTime(post)}</p>
+                </div>
+                <div class="topic-image-container">
+                    <div>
+                        <img src="${post.topic}">
+                    </div>
+                </div>
+            </div>
+            ${isSubmission ? `
+                <div class="message-container">
+                    <p style="background-color:${post.theme}">${post.message}</p>
+                </div>
+            ` : `
+                <a href="comments.html?postId=${post.postId}" class="message-container">
+                    <p style="background-color:${post.theme}">${post.message}</p>
+                </a>
+            `}
+            ${isSubmission ? `
+                <div class="approve-container" style="display: none;">
+                    <div class="confirm-message">
+                        <img class="confirm-image" src="images/check-mark.png">
+                        <p class="thank-you">Approve post?</p>
+                        <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                    </div>
+                    <div class="confirm-choices-container">
+                        <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                        <div class="cancel">Cancel</div>
+                    </div>
+                </div>
+                <div class="reject-container" style="display: none;">
+                    <div class="confirm-message">
+                        <img class="confirm-image" src="images/bin.png">
+                        <p class="thank-you">Reject post?</p>
+                        <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                    </div>
+                    <div class="confirm-choices-container">
+                        <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                        <div class="cancel">Cancel</div>
+                    </div>
+                </div>
+                <div class="feature-container" style="display: none;">
+                    <div class="confirm-message">
+                        <img class="confirm-image" src="images/star.png">
+                        <p class="thank-you">Feature post?</p>
+                        <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                    </div>
+                    <div class="confirm-choices-container">
+                        <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                        <div class="cancel">Cancel</div>
+                    </div>
+                </div>
+            ` : `
+                <div class="delete-container" style="display: none;">
+                    <div class="confirm-message">
+                        <img class="confirm-image" src="images/bin.png">
+                        <p class="thank-you">Delete post?</p>
+                        <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                    </div>
+                    <div class="confirm-choices-container">
+                        <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                        <div class="cancel">Cancel</div>
+                    </div>
+                </div>
+                <div class="setFeature-container" style="display: none;">
+                    <div class="confirm-message">
+                        <img class="confirm-image" src="images/star.png">
+                        <p class="thank-you">Change the feature status of this post?</p>
+                        <p class="confirm-details">Once you confirm this, you cannot undo.</p>
+                    </div>
+                    <div class="confirm-choices-container">
+                        <div class="confirm" data-post-id=${post.postId}>Confirm</div>
+                        <div class="cancel">Cancel</div>
+                    </div>
+                </div>
+            `}
+          </div>
+    `;
+  });
+  // currentlyLoggedData = data;
+  document.querySelector('.js-posts-list-container').innerHTML = adminWallHTML;
+  addEventListenerForAdminChoices();
 }
