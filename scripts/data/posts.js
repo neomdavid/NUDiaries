@@ -7,7 +7,7 @@ export let posts = JSON.parse(localStorage.getItem('posts')) || [{
   topic: 'images/technology.png',
   time: 'June 1, 2024',
   profilePicture: 'images/bulldog.jpeg',
-  comments: [1, 2],
+  comments: [],
   featured: false // By default, posts are not featured unless inputted otherwise
 }];
 
@@ -25,7 +25,7 @@ export function addPost(postId, author, title, message, theme, topic, time, prof
     topic,
     time,
     profilePicture,
-    comments: [1,2],
+    comments: [],
     featured
   });
   saveToStorage();
