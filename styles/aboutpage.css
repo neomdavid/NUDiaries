@@ -149,11 +149,12 @@ body {
 
 .about_tab {
     display: flex;
-    padding: 160px;
+    padding: 80px;
     grid-template-columns: 2fr 1fr;
     text-align: justify;
-    gap: 10px;
+    gap: 60px;
     align-items: center;
+
 }
 
 .about_tab h1{

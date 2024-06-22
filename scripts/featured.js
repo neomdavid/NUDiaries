@@ -12,7 +12,7 @@ let featuredHTML = '';
 if (featured.length == 0){
   //There's a bug wherein if there are no featured posts, the featured wall will display the posts from the normal wall.
   // This if-else check is a fix for that. It just displays "No posts have been selected to be featured as of the moment."
-  featuredHTML += `<p>No posts have been selected to be featured as of the moment.</p>`;
+  featuredHTML += `<p class="empty-featured">No posts have been selected to be featured as of the moment.</p>`;
   document.querySelector('.js-posts-list-container').innerHTML = featuredHTML;
 } else {
   featured.forEach((post)=>{

@@ -101,57 +101,65 @@ function renderCommentPage() {
 
 function commentsListHTML() {
   let commentListHTML = ``;
-  if(isAdmin){
+  let previousUserId = null; // Track the previous user ID to manage the comment container closing
+
+  if (isAdmin) {
     comments.forEach((comment, index) => {
       if (matchingPost.comments.includes(comment.commentId)) {
-        if (index > 0 && comment.userId === comments[index - 1].userId) {
-          commentListHTML += ` 
-            <div class="user-comment" style="background-color:${comment.theme}">${comment.comment}<img src="images/delete.png" data-comment-id="${comment.commentId}"></div>
-          `;
-        } else {
-          if (index > 0) {
-            commentListHTML += `</div>`;
-          }
-          commentListHTML += ` 
-            <div class="single-comment-container">    
-              <div class="user-name">User ${comment.userId}</div>
-              <div class="user-comment">${comment.comment}<img src="images/delete.png" data-comment-id="${comment.commentId}"></div>
-          `;
+        // Close the previous comment container if the current user ID is different
+        if (previousUserId !== null && comment.userId !== previousUserId) {
+          commentListHTML += `</div>`;
         }
+
+        if (comment.userId === previousUserId) {
+          // Same user, add comment with theme
+          commentListHTML += `
+            <div class="user-comment" style="background-color:${comment.theme}">${comment.comment}
+              <img src="images/delete.png" data-comment-id="${comment.commentId}">
+            </div>`;
+        } else {
+          // New user, start a new comment container
+          commentListHTML += `
+            <div class="single-comment-container">
+              <div class="user-name">User ${comment.userId}</div>
+              <div class="user-comment">${comment.comment}
+                <img src="images/delete.png" data-comment-id="${comment.commentId}">
+              </div>`;
+        }
+
+        previousUserId = comment.userId; // Update the previous user ID
       }
     });
-  
-    // Close the last comment container
-    if (comments.length > 0) {
-      commentListHTML += `</div>`;
-    }
   } else {
     comments.forEach((comment, index) => {
       if (matchingPost.comments.includes(comment.commentId)) {
-        if (index > 0 && comment.userId === comments[index - 1].userId) {
-          commentListHTML += ` 
-            <div class="user-comment" style="background-color:${comment.theme}">${comment.comment}</div>
-          `;
-        } else {
-          if (index > 0) {
-            commentListHTML += `</div>`;
-          }
-          commentListHTML += ` 
-            <div class="single-comment-container">    
-              <div class="user-name">User ${comment.userId}</div>
-              <div class="user-comment">${comment.comment}</div>
-          `;
+        // Close the previous comment container if the current user ID is different
+        if (previousUserId !== null && comment.userId !== previousUserId) {
+          commentListHTML += `</div>`;
         }
+
+        if (comment.userId === previousUserId) {
+          // Same user, add comment
+          commentListHTML += `
+            <div class="user-comment" style="background-color:${comment.theme}">${comment.comment}</div>`;
+        } else {
+          // New user, start a new comment container
+          commentListHTML += `
+            <div class="single-comment-container">
+              <div class="user-name">User ${comment.userId}</div>
+              <div class="user-comment">${comment.comment}</div>`;
+        }
+
+        previousUserId = comment.userId; // Update the previous user ID
       }
     });
-  
-    // Close the last comment container
-    if (comments.length > 0) {
-      commentListHTML += `</div>`;
-    }
-
   }
- 
+
+  // Close the last comment container if there were any comments
+  if (previousUserId !== null) {
+    commentListHTML += `</div>`;
+  }
 
   return commentListHTML;
 }
+

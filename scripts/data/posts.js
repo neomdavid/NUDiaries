@@ -9,6 +9,17 @@ export let posts = JSON.parse(localStorage.getItem('posts')) || [{
   profilePicture: 'images/bulldog.jpeg',
   comments: [],
   featured: false // By default, posts are not featured unless inputted otherwise
+},{
+  postId: '202',
+  author: 'heyy',
+  title: 'fawfasd',
+  message: 'Gaano po katagal i-process ang COR',
+  theme: 'rgb(99, 211, 130)',
+  topic: 'images/technology.png',
+  time: 'June 1, 2024',
+  profilePicture: 'images/bulldog.jpeg',
+  comments: [],
+  featured: false // By default, posts are not featured unless inputted otherwise
 }];
 
 export function saveToStorage() {

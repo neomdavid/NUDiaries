@@ -9,6 +9,15 @@
   margin-top: 60px;
   margin-bottom: 150px;
 }
+.empty-featured{
+  text-align: center;
+  width: 70%;
+  line-height: 27px;
+  font-weight: 300;
+  margin: 50px 0;
+  font-size: .95em;
+  font-style: italic;
+}
 .post-container{
   display: flex;
   flex-direction: column;

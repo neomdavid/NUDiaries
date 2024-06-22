@@ -136,6 +136,7 @@ main{
   align-items: center;
   text-align: center;
   row-gap: 15px;
+  min-width: 40vw;
 }
 .submitted-questions-container .messages-found{
   font-size: .85em;
