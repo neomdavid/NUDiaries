@@ -4,7 +4,7 @@ export const accounts = [
   { 
     email: 'cruztp@students.national-u.edu.ph', password: 'tyrelcruz', name: 'Tyrel Cruz', role: 'Front-End', image:'images/tyrel-img.jpg'},
   { 
-    email: 'davidnm@students.national-u.edu.ph', password: 'neodavid', name: 'Neo David', role: 'Front-End', image:'images/neo-img.jpg'},
+    email: 'davidnm@students.national-u.edu.ph', password: 'neodavid', name: 'Neo David', role: 'Lead Developer', image:'images/neo-img.jpg'},
   { 
     email: 'rapirg@students.national-u.edu.ph', password: 'russelrapi', name: 'Russel Rapi', role: 'Front-End', image:'images/russel-img.jpg'},
   { 
