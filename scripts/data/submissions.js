@@ -1,24 +1,4 @@
-export let submissions = JSON.parse(localStorage.getItem('submissions')) || [{
-  postId: 100,
-  author: 'Try',
-  title: 'Submitted Post',
-  message: 'submitsubmitsubmit',
-  theme: 'rgb(99, 211, 130)',
-  topic: 'images/technology.png',
-  time: 'June 1, 2024',
-  profilePicture: null,
-  comments: null
-},{
-  postId: 1001,
-  author: 'Try',
-  title: 'Submitted Post',
-  message: 'submitsubmitsubmit',
-  theme: 'rgb(99, 211, 130)',
-  topic: 'images/technology.png',
-  time: 'June 1, 2024',
-  profilePicture: null,
-  comments: null
-}];
+export let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
 
 function saveToStorage(){
   localStorage.setItem('submissions', JSON.stringify(submissions));

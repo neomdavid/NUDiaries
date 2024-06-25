@@ -139,6 +139,23 @@ document.querySelector('.js-post-button').addEventListener('click', () => {
     renderWall();
   }
 });
+document.querySelector('.js-responsive-button').addEventListener('click', () => {
+  const author = document.querySelector('.author-container input').value;
+  const title = document.querySelector('.title-container input').value;
+  const message = document.querySelector('.messager-container textarea').value;
+  let time = dayjs();
+  
+  const hasError = validatePost(author, title, message);
+  
+  if (!hasError) {
+    submitPost(generatePostId(), author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
+    clearAddedPostInput();
+    clearErrorStyles();
+    wrapper.classList.remove('visible');
+    floating.classList.remove('visible');
+    renderWall();
+  }
+});
 
 
 document.querySelector('#profile-picture-input').addEventListener('change', (event) => {
@@ -197,23 +214,6 @@ function clearAddedPostInput() {
   topic = undefined;
   profilePicture = undefined;
 };
-document.querySelector('.js-responsive-button').addEventListener('click', () => {
-  const author = document.querySelector('.author-container input').value;
-  const title = document.querySelector('.title-container input').value;
-  const message = document.querySelector('.messager-container textarea').value;
-  let time = dayjs();
-  
-  const hasError = validatePost(author, title, message);
-  
-  if (!hasError) {
-    submitPost(generatePostId(), author, title, message, theme || 'rgb(99, 211, 130)', topic || 'images/technology.png', time, profilePicture);
-    clearAddedPostInput();
-    clearErrorStyles();
-    wrapper.classList.remove('visible');
-    floating.classList.remove('visible');
-    renderWall();
-  }
-});
 
 function validatePost(author, title, message) {
   let hasError = false;
@@ -229,7 +229,7 @@ function validatePost(author, title, message) {
   if (!message){
     displayMessageEmpty();
     hasError = true;
-  } else if (message.length > 300){
+  } else if (message.length > 2500){
     displayMessageMax();
     hasError = true;
   }

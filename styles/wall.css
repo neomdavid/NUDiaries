@@ -344,7 +344,7 @@ input:focus {
 .themes-choices-container div:nth-child(1){
   width: 25px;
   height: 25px;
-  background-color: rgb(99, 177, 211);
+  background-color: rgb(27, 49, 91);
   border-radius: 50%;
 }
 .themes-choices-container div:nth-child(2){
@@ -356,13 +356,13 @@ input:focus {
 .themes-choices-container div:nth-child(3){
   width: 25px;
   height: 25px;
-  background-color: rgb(99, 211, 130);
+  background-color: rgb(67, 177, 98);
   border-radius: 50%;
 }
 .themes-choices-container div:nth-child(4){
   width: 25px;
   height: 25px;
-  background-color: rgb(233, 223, 129);
+  background-color: rgb(216, 198, 35);
   border-radius: 50%;
 }
 
