@@ -21,15 +21,15 @@ header {
 }
 
 .color1 {
-  color: #0E1C36;
+  color: #0e1c36;
 }
 
 .color2 {
-  color: #EECC82;
+  color: #eecc82;
 }
 
 .color3 {
-  color: #FFF8E8;
+  color: #fff8e8;
 }
 
 .nav {
@@ -73,7 +73,7 @@ header {
 
 .nav_writeButton {
   background-color: rgb(16, 30, 56);
-  color: #FFF8E8;
+  color: #fff8e8;
   padding: 10px 20px;
   border-radius: 10px;
   font-size: 15px;
@@ -99,7 +99,7 @@ header {
   width: 70%;
   height: 530px;
   text-align: center;
-  border: 1px solid #0E1C36;
+  border: 1px solid #0e1c36;
   border-radius: 12px;
   padding: 10px 20px;
   padding-left: 0px;
@@ -107,9 +107,8 @@ header {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
-  color: #0E1C36;
+  color: #0e1c36;
 }
-
 
 .contact-container h3 {
   font-size: 20px;
@@ -117,7 +116,7 @@ header {
   padding: 0;
   padding-top: 15px;
   padding-bottom: 5px;
-  position: relative; 
+  position: relative;
   font-style: italic;
   font-weight: 400;
   left: 3%;
@@ -132,17 +131,16 @@ header {
   left: -40%;
 }
 
-
 .container h2 {
   font-size: 35px;
-  color: #0E1C36;
+  color: #0e1c36;
   font-weight: 800;
   left: 3%;
   position: relative;
 }
 
 input {
-  color: #0E1C36;
+  color: #0e1c36;
 }
 
 .input-field {
@@ -154,13 +152,13 @@ input {
   border-radius: 10px;
   background: transparent;
   margin: 15px;
-  border: 2px solid #0E1C36;
+  border: 2px solid #0e1c36;
   width: 90%;
   height: 2px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   padding: 20px 0;
-  padding-left: 20px;    
+  padding-left: 20px;
   /* Safari */
 }
 
@@ -169,11 +167,11 @@ input {
   top: 50%;
   transform: translateY(-50%);
   right: 5%;
-  color: #0E1C36;
+  color: #0e1c36;
 }
 
 input::placeholder {
-  color: #0E1C36;
+  color: #0e1c36;
 }
 
 .input-field input[type="email"]:focus::placeholder,
@@ -191,8 +189,8 @@ input::placeholder {
 }
 
 .container .submit {
-  background: #0E1C36;
-  color: #FFF8E8;
+  background: #0e1c36;
+  color: #fff8e8;
   border: none;
   outline: none;
   cursor: pointer;
@@ -212,12 +210,12 @@ input::placeholder {
 }
 
 textarea {
-  color: #0E1C36;
+  color: #0e1c36;
   font-family: Inter;
   border-radius: 10px;
   background: transparent;
   margin: 15px;
-  border: 2px solid #0E1C36;
+  border: 2px solid #0e1c36;
   width: 90%;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -227,7 +225,7 @@ textarea {
 }
 
 textarea::placeholder {
-  color: #0E1C36;
+  color: #0e1c36;
 }
 
 textarea:focus::placeholder {
@@ -250,8 +248,11 @@ textarea:not(:focus)::placeholder {
   z-index: -3;
 }
 
-@media only screen and (max-width:700px){
- 
+@media only screen and (max-width: 700px) {
+  .container .submit {
+    width: 30vw;
+    transform: translateY(-9px);
+  }
 }
 
 #the-count {
